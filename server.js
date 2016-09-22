@@ -9,7 +9,7 @@ new WebpackDevServer(webpack(config), {
   stats: {
     colors: true
   }
-}).listen(3000, '192.168.20.225', function (err) {
+}).listen(3000, '127.0.0.1', function (err) {
   if (err) {
     console.log(err);
   }
