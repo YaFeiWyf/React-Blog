@@ -1,0 +1,31 @@
+.resumeContianer {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 40%;
+  background: url("http://192.168.20.225:3000/client/containers/Resume/images/background.jpg") no-repeat fixed;
+  background-size: cover; }
+
+.resumeContianer .resumeTitle {
+  line-height: 3;
+  font-size: 30px;
+  color: #f2f2f2;
+  text-align: center; }
+
+.resumeContianer .personalInfo {
+  width: 80%;
+  margin: 0 auto;
+  color: #fff;
+  line-height: 2; }
+
+.resumeContianer .currentState {
+  width: 100%;
+  height: 80px;
+  line-height: 80px;
+  margin-top: 200px;
+  text-align: center;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.3); }
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,22 @@
+.blogItem {
+  width: 100%;
+  padding: 30px 5%;
+  margin-bottom: 30px;
+  background: #fff;
+  box-sizing: border-box;
+  border-radius: 10px;
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3); }
+
+.blogItem h1 {
+  font-size: 20px;
+  font-weight: normal;
+  line-height: 3.5; }
+
+.blogItem p.blogContent {
+  line-height: 2; }
+
+.blogItem p.blogInfo {
+  line-height: 2;
+  color: #b3b3b3; }
+
+/*# sourceMappingURL=index.css.map */

@@ -1,0 +1,30 @@
+$paddingTop: 30px;
+$lineHeight: 3.5;
+$white: #fff;
+@function getMarginBottom($bottom: 20){
+	@return (10+$bottom)+px;
+}
+@function getLineHeight($lineHeight: 0.5){
+	@return 0.5+$lineHeight;
+}
+.blogItem {
+	width: 100%;
+	padding:  $paddingTop 5%;
+	margin-bottom: getMarginBottom();
+	background: $white;
+	box-sizing: border-box;
+	border-radius: 10px;
+	box-shadow: 0 10px 20px rgba(0,0,0,.3);
+}
+.blogItem h1 {
+	font-size: 20px;
+	font-weight: normal;
+	line-height: getLineHeight(3);
+}
+.blogItem p.blogContent {
+	line-height: getLineHeight(1.5);
+}
+.blogItem p.blogInfo {
+	line-height: getLineHeight(1.5);
+	color: darken(#ccc, 10%);
+}
