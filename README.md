@@ -24,9 +24,10 @@ Finally, run the project:
 npm start
 open http://localhost:3000
 ```
-```
+
 or you can run the project by:
 
 ```
 node server.js
 open http://localhost:3000
+```
