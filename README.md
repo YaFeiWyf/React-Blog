@@ -1,7 +1,9 @@
 
-# My blog project which is based on React and Redux
+#React-Blog
 
-## Running Example
+My blog project which is based on React and Redux
+
+## Running The Project
 
 First, clone the project:
 
@@ -31,3 +33,8 @@ or you can run the project by:
 node server.js
 open http://localhost:3000
 ```
+#Personal website
+
+Here is my [personal website](http://www.yvanwang.com/).
+Let's be friends
+

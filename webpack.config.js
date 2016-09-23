@@ -31,7 +31,8 @@ var baseConfig = {
         test: /\.(js|jsx)$/,
         exclude: /node_modules/,
         loaders: [
-          'babel-loader'
+          'babel-loader',
+          'react-hot'
         ]
       },
     ],
