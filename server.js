@@ -1,6 +1,11 @@
 var webpack = require('webpack');
 var WebpackDevServer = require('webpack-dev-server');
 var config = require('./webpack.config');
+var express = require('express');
+var app = express();
+var path  = require('path');
+
+app.use(express.static(path.join(__dirname, '/client')));
 
 new WebpackDevServer(webpack(config), {
   publicPath: config.output.publicPath,
@@ -9,10 +14,17 @@ new WebpackDevServer(webpack(config), {
   stats: {
     colors: true
   }
-}).listen(3000, '192.168.20.225', function (err) {
+}).listen(3000, '127.0.0.1', function (err) {
   if (err) {
     console.log(err);
   }
 
-  console.log('Listening at localhost:%s',3000);
+  console.log('Listening at localhost:3000');
 });
+
+/*var server = app.listen(8080, function () {
+  var host = server.address().address;
+  var port = server.address().port;
+
+  console.log('Example app listening at http://%s:%s', host, port);
+});*/
