@@ -13,7 +13,6 @@ export default class Root extends Component {
         <div>
           <Blog />
           <Resume />
-          /*<DevTools />*/
         </div>
       </Provider>
     );
