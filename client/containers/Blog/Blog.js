@@ -3,11 +3,27 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/Blogs';
 import BlogItem from '../../components/BlogItem/BlogItem';
+import fetch from 'isomorphic-fetch';
 require ('./index.css');
 
 class Blog extends Component {
 	constructor(props){
 		super(props);
+	}
+
+	fetchTest(){
+		const { actions } = this.props;
+		fetch('test.json',{
+			method:'GET'
+		})
+		.then(response=>response.json())
+		.then(json=>{
+			//console.log(JSON.stringify(json));
+			actions.addBlog(json);
+		})
+		.catch(e=>{
+			console.log(e);
+		})	
 	}
 
 	render(){
@@ -16,6 +32,7 @@ class Blog extends Component {
 		blogs.map((blog, index)=>blogItems.push(<BlogItem key={index} blogData={blog} />));
 		return (
 			<div className="blogsContainer">
+				<div onClick={()=>actions.fetchTest()}>新增博客</div>
 				<ul>
 					{blogItems}
 				</ul>
