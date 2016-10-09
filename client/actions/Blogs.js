@@ -6,6 +6,9 @@ export function fetchTest(){
 			method:'POST',
 			mode: 'cors',
             Origin: '*',
+            headers: { // headers: fetch事实标准中可以通过Header相关api进行设置
+		        'Content-Type': 'application/json' // default: 'application/json'
+		    },
 			body:JSON.stringify({
 				name:'wangyafei',
 				content:'前台post数据'

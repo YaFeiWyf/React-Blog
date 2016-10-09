@@ -6,7 +6,7 @@
   "scripts": {
     "clean": "rm -rf static/*",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "NODE_ENV=development webpack-dev-server --env=dev -d --history-api-fallback --hot --inline --progress --colors --port 3000",
+    "start": "node-dev ./server/bin/www",
     "build": "NODE_ENV=production webpack --env=build --progress --colors"
   },
   "repository": {
@@ -64,6 +64,12 @@
     "webpack-hot-middleware": "^2.7.1"
   },
   "dependencies": {
-    "body-parser": "^1.15.2"
+    "body-parser": "~1.15.1",
+    "cookie-parser": "~1.4.3",
+    "debug": "~2.2.0",
+    "express": "~4.13.4",
+    "jade": "~1.11.0",
+    "morgan": "~1.7.0",
+    "serve-favicon": "~2.3.0"
   }
 }
