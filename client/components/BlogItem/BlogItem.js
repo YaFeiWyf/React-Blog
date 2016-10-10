@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import NavLink from '../NavLink/NavLink';
 require ('./index.css');
 
 export default class BlogItem extends Component {
@@ -8,11 +9,13 @@ export default class BlogItem extends Component {
 	render(){
 		const { blogData } = this.props;
 		return (
-			<li className='blogItem'>
-				<h1>{blogData.title}</h1>
-				<p className='blogContent'>{blogData.content}</p>
-				<p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>
-			</li>
+			<NavLink to={'/blog/'+blogData.id}>
+				<li className='blogItem'>
+					<h1>{blogData.title}</h1>
+					<p className='blogContent'>{blogData.content}</p>
+					<p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>
+				</li>
+			</NavLink>
 		);
 	}
 }

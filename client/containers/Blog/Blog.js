@@ -4,6 +4,9 @@ import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/Blogs';
 import BlogItem from '../../components/BlogItem/BlogItem';
 import fetch from 'isomorphic-fetch';
+import ListSortContainer from '../ListSortContainer/ListSortContainer';
+import ListAnim from '../ListAnim/ListAnim';
+import DetailSwitch from '../DetailSwitch/DetailSwitch';
 require ('./index.css');
 
 class Blog extends Component {
@@ -36,6 +39,7 @@ class Blog extends Component {
 				<ul>
 					{blogItems}
 				</ul>
+				<ListSortContainer/>
 			</div>
 		);
 	}
