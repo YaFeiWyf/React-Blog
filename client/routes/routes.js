@@ -6,7 +6,7 @@ import {Router, Route} from 'react-router';
 
 module.exports=(
 	<Route>
-		<Route path='/' compnent={Blog}/>
+		<Route path='/' component={Blog}/>
 		<Route path='/blog/:id' component={Resume}/>
 	</Route>
 );

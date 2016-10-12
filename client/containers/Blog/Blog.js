@@ -7,6 +7,7 @@ import fetch from 'isomorphic-fetch';
 import ListSortContainer from '../ListSortContainer/ListSortContainer';
 import ListAnim from '../ListAnim/ListAnim';
 import DetailSwitch from '../DetailSwitch/DetailSwitch';
+import LoginDialog from '../../components/LoginDialog/LoginDialog'
 require ('./index.css');
 
 class Blog extends Component {
@@ -22,12 +23,43 @@ class Blog extends Component {
 		.then(response=>response.json())
 		.then(json=>{
 			//console.log(JSON.stringify(json));
-			actions.addBlog(json);
+			console.log(json);
 		})
 		.catch(e=>{
 			console.log(e);
 		})	
 	}
+
+	submitLoginInfo(values){
+	    console.log('start send data');
+        fetch('/login',{
+            method:'POST',
+            mode: 'cors',
+            Origin: '*',
+            headers: { // headers: fetch事实标准中可以通过Header相关api进行设置
+                'Content-Type': 'application/json' // default: 'application/json'
+            },
+            body:JSON.stringify(values)
+        })
+        .then(response=>response.json())
+        .then(json=>{
+            console.log(json);
+        })
+        .catch(e=>{
+            console.log(JSON.stringify(e));
+        });
+	    /*fetch('/login',{
+            method:'POST',
+            mode: 'cors',
+            Origin: '*',
+            headers: { // headers: fetch事实标准中可以通过Header相关api进行设置
+                'Content-Type': 'application/json' // default: 'application/json'
+            },
+            body:JSON.stringify(values)
+        })
+        .then(response=>response.json())
+            .then(json=>console.log(json))*/
+    }
 
 	render(){
 		const { blogs, actions } = this.props;
@@ -40,6 +72,7 @@ class Blog extends Component {
 					{blogItems}
 				</ul>
 				<ListSortContainer/>
+                <LoginDialog onLogin={this.submitLoginInfo.bind(this)}/>
 			</div>
 		);
 	}

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="JavaScriptLibraryMappings">
+    <file url="file://$PROJECT_DIR$/server" libraries="{React-Blog/server/node_modules}" />
+    <file url="PROJECT" libraries="{express-DefinitelyTyped, jsx-chai-DefinitelyTyped, mongodb-DefinitelyTyped, mongoose-DefinitelyTyped, node-DefinitelyTyped, react-DefinitelyTyped, react-autosuggest-DefinitelyTyped}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
+    <includedPredefinedLibrary name="Node.js Core" />
+  </component>
+</project>
