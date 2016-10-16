@@ -1,6 +1,6 @@
-var rucksack = require('rucksack-css')
-var webpack = require('webpack')
-var path = require('path')
+var rucksack = require('rucksack-css');
+var webpack = require('webpack');
+var path = require('path');
 
 /* baseConfig */
 var baseConfig = {
@@ -89,6 +89,7 @@ var envConfig = {
       }),
       new webpack.optimize.AggressiveMergingPlugin(),
       new webpack.NoErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin()
     ]
   },
   'dev': {

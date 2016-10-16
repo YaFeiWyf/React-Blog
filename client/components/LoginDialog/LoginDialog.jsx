@@ -1,5 +1,5 @@
-import React, {Component} from 'react';
-import {Form, Input, Button } from 'antd';
+import React, { Component } from 'react';
+import { Form, Input, Button } from 'antd';
 const FormItem = Form.Item;
 require ('./index.css');
 
