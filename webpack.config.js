@@ -17,6 +17,7 @@ var baseConfig = {
       'redux'
     ]
   },
+  devtool: "source-map",
   module: {
     loaders: [
       {
@@ -96,12 +97,15 @@ var envConfig = {
     output: {
       path: path.join(__dirname, './static'),
       filename: 'bundle.js',
+      chunkFilename: '[name].[chunkhash:5].chunk.js'
     },
     plugins: [
       new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
       new webpack.DefinePlugin({
         'process.env': { NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development') }
       }),
+      new webpack.NoErrorsPlugin(),
+      new webpack.HotModuleReplacementPlugin()
     ]
   }
 }

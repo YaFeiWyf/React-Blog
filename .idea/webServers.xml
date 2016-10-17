@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="38e258fc-52eb-4d5c-ad41-a5eec176fd19" name="node-server" url="http://192.168.20.225:3000">
+        <fileTransfer port="0" mountedRoot="D:\MyFile\React-Blog" accessType="MOUNT" />
+      </webServer>
+    </option>
+  </component>
+</project>
