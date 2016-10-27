@@ -10,6 +10,7 @@ module.exports=(
 	<Route path='/' component={Resume}>
 		{/*默认页*/}
 		<IndexRoute component={Blog}/>
+		<Route path='/blog' component={BlogContent}/>
 		<Route path='/blog/:id' component={BlogContent}/>
 		{/* 其他重定向到 404 */}
         <Redirect from='*' to='/404' />

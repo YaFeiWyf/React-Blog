@@ -51,7 +51,7 @@ app.use('/bloglist', blogList);
 app.use('/users', users);
 app.use('/test', test);
 app.use('/login',login);
-app.use('/blog',blogContent);
+app.use('/blog/(:id)',blogContent);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
