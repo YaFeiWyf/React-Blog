@@ -14,6 +14,8 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 var test = require('./routes/test');
 var login = require('./routes/login');
+var blogList = require('./routes/blogList');
+var blogContent = require('./routes/blogContent');
 
 var app = express();
 
@@ -45,10 +47,11 @@ app.use(webpackDevMiddleware(compiler, {
 app.use(webpackHotMiddleware(compiler));
 
 //set routers
-app.use('/', routes);
+app.use('/bloglist', blogList);
 app.use('/users', users);
 app.use('/test', test);
 app.use('/login',login);
+app.use('/blog',blogContent);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

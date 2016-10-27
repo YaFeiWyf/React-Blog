@@ -1,11 +1,24 @@
+.rootContainer {
+  height: 100%; }
+
 .resumeContianer {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
   width: 40%;
-  background: url("http://192.168.20.225:3000/client/containers/Resume/images/background.jpg") no-repeat fixed;
-  background-size: cover; }
+  background: url("./images/background.jpg") no-repeat fixed;
+  background-size: cover;
+  text-align: center;
+  padding-top: 30px; }
+  .resumeContianer img {
+    width: 150px;
+    height: 150px;
+    -webkit-border-radius: 50%;
+    -moz-border-radius: 50%;
+    border-radius: 50%; }
+  .resumeContianer p {
+    font-size: 18px; }
 
 .resumeContianer .resumeTitle {
   line-height: 3;

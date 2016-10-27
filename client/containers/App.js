@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import routes from '../routes/routes';
+import rootRoute from '../routes/routes';
 import {Router, Route, hashHistory, browserHistory} from 'react-router';
 
 export default class App extends Component {
@@ -9,7 +9,7 @@ export default class App extends Component {
 
 	render(){
 		return (
-			<Router routes={routes} history={hashHistory}/>
+			<Router routes={rootRoute} history={browserHistory}/>
 		);
 	}
 }

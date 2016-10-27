@@ -177,5 +177,7 @@ body {
   background: rgb(42, 47, 58);
 }
 #root {
-  background: rgb(42, 47, 58);
+    background: rgb(42, 47, 58);
+    width:100%;
+    height:100%;
 }

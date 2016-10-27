@@ -50,10 +50,20 @@ class Blog extends Component {
         });
     }
 
+    componentWillMount(){
+        let {actions} = this.props;
+        actions.initBlogList();
+    }
+
+    fetchBlogContent(blogId){
+        let {actions} = this.props;
+        actions.initBlogContent(blogId);
+    }
+
 	render(){
 		const { blogs, actions } = this.props;
 		let blogItems = [];
-		blogs.map((blog, index)=>blogItems.push(<BlogItem key={index} blogData={blog} />));
+		blogs.map((blog, index)=>blogItems.push(<BlogItem key={index} blogData={blog} showBlogContent={actions.initBlogContent}/>));
 		return (
 			<div className="blogsContainer">
 				<div onClick={()=>actions.fetchTest()}>新增博客</div>
