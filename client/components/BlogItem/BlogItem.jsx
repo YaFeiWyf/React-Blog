@@ -7,10 +7,10 @@ export default class BlogItem extends Component {
 		super(props);
 	}
 	render(){
-		const { blogData, showBlogContent } = this.props;
+		const { blogData } = this.props;
 		return (
 			<NavLink to={'/blog/'+blogData.id}>
-				<li className='blogItem' onClick={()=>showBlogContent(blogData.id)}>
+				<li className='blogItem'>
 					<h1>{blogData.title}</h1>
 					<p className='blogContent'>{blogData.content}</p>
 					<p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>

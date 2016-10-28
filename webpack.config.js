@@ -30,7 +30,8 @@ var baseConfig = {
       },
       { 
         test: /\.(png|jpg)$/, 
-        loader: 'url-loader?limit=8192' 
+        loader: 'url-loader'
+        //loader: 'url-loader?limit=8192'
       }, // inline base64 URLs for <=8k images, direct URLs for the rest
       {
         test: /\.(js|jsx)$/,

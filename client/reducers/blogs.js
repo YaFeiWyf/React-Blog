@@ -34,9 +34,7 @@ const initState = {
 };
 
 function initBlogListSuccess(state, blogs) {
-	let initBlogs = state['blogs'];
-	let newBlogList = initBlogs.concat(blogs);
-	return Object.assign({},state,{blogs:newBlogList});
+	return Object.assign({},state,{blogs:blogs});
 }
 
 function initBlogListFail() {

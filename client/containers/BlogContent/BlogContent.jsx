@@ -9,6 +9,11 @@ class BlogContent extends Component {
         super(props);
     }
 
+    componentWillMount(){
+        let {actions} = this.props;
+        actions.initBlogContent(this.props.params.id);
+    }
+
     render() {
         let {blogContent} = this.props;
         return (
