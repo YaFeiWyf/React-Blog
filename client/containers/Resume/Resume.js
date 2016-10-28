@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/Resume';
 import imgSrc from './images/logo.jpg';
+import NavLink from '../../components/NavLink/NavLink';
 import {browserHistory} from 'react-router';
 require ('./index.css');
 require ('./images/logo.jpg');
@@ -31,7 +32,7 @@ class Resume extends Component {
 					<h1 className='resumeTitle'>{resumeInfo.resumeTitle}</h1>
 					<p className='personalInfo'>{resumeInfo.personalInfo}</p>
 					<p className="currentState">{resumeInfo.currentState}</p>
-                    <a className="back" onClick={this.back.bind(this)}>文章</a>
+					<NavLink className="indexPage" to='/'>首页</NavLink>
 				</div>
 				{this.props.children}
 			</div>
