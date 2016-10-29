@@ -174,7 +174,8 @@ html { overflow-y: scroll; }
 }
 
 body {
-  background: rgb(42, 47, 58);
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Helvetica, "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", SimSun, sans-serif !important;
+    background: rgb(42, 47, 58);
 }
 #root {
     background: rgb(42, 47, 58);

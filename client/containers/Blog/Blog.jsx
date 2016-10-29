@@ -65,8 +65,7 @@ class Blog extends Component {
 		let blogItems = [];
 		blogs.map((blog, index)=>blogItems.push(<BlogItem key={index} blogData={blog} showBlogContent={actions.initBlogContent}/>));
 		return (
-			<div className="blogsContainer">
-				<div onClick={()=>actions.fetchTest()}>新增博客</div>
+			<div className="blogsContainer container">
 				<ul>
 					{blogItems}
 				</ul>

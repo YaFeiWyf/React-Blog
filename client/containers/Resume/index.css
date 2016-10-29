@@ -7,8 +7,9 @@
   top: 0;
   bottom: 0;
   width: 40%;
-  background: url("./images/background.jpg") no-repeat fixed;
-  background-size: cover;
+  /*background: url("./images/background.jpg") no-repeat fixed;
+  background-size: cover;*/
+  background-color: #2a2f3a;
   text-align: center;
   padding-top: 30px; }
   .resumeContianer img {
@@ -21,15 +22,16 @@
     font-size: 18px; }
 
 .resumeContianer .resumeTitle {
-  line-height: 3;
-  font-size: 30px;
-  color: #f2f2f2;
-  text-align: center; }
+  line-height: 2;
+  font-size: 44px;
+  color: #7296bb;
+  text-align: center;
+  font-family: 'RobotoThin'; }
 
 .resumeContianer .personalInfo {
   width: 80%;
   margin: 0 auto;
-  color: #fff;
+  color: #83A3C3;
   line-height: 2; }
 
 .resumeContianer .currentState {
@@ -39,6 +41,19 @@
   margin-top: 200px;
   text-align: center;
   color: #fff;
-  background: rgba(255, 255, 255, 0.3); }
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+
+.button {
+  display: inline-block;
+  width: 200px;
+  height: 50px;
+  line-height: 50px;
+  text-align: center;
+  font-size: 16px;
+  color: #fff;
+  background-color: rgba(0, 0, 0, 0.3);
+  margin: 200px 20px 0;
+  border-radius: 10px; }
 
 /*# sourceMappingURL=index.css.map */

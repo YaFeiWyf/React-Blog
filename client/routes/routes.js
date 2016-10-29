@@ -3,6 +3,8 @@ import { render } from 'react-dom';
 import Blog from '../containers/Blog/Blog';
 import Resume from '../containers/Resume/Resume';
 import BlogContent from '../containers/BlogContent/BlogContent';
+import LoginDialog from '../components/LoginDialog/LoginDialog';
+import AdminManage from '../containers/AdminManage/AdminManage';
 import {Router, Route, IndexRoute, Redirect} from 'react-router';
 
 module.exports=(
@@ -12,6 +14,8 @@ module.exports=(
 		<IndexRoute component={Blog}/>
 		<Route path='/blog' component={BlogContent}/>
 		<Route path='/blog/:id' component={BlogContent}/>
+		<Route path='/login' component={LoginDialog}/>
+        <Route path='/admin' component={AdminManage}/>
 		{/* 其他重定向到 404 */}
         <Redirect from='*' to='/404' />
 	</Route>

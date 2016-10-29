@@ -17,7 +17,7 @@ class BlogContent extends Component {
     render() {
         let {blogContent} = this.props;
         return (
-            <div className="blogContentWrap">
+            <div className="blogContentWrap container">
                 {blogContent['content']}
             </div>
         );

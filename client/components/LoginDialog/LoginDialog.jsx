@@ -1,20 +1,30 @@
 import React, { Component } from 'react';
 import { Form, Input, Button } from 'antd';
+import * as Actions from '../../actions/Login';
+import {connect} from 'react-redux';
+import {bindActionCreators} from 'redux';
 const FormItem = Form.Item;
+import {browserHistory} from 'react-router';
 require ('./index.css');
 
 let LoginForm = React.createClass({
 
     handleSubmit(e){
         "use strict";
-        let {onLogin} = this.props;
-        var values = this.props.form.getFieldsValue()
+        let {login, actions} = this.props;
+        var values = this.props.form.getFieldsValue();
         e.preventDefault();
         console.log('React form of values:', values);
-        onLogin(values);
+        if(!login.is_login){
+            actions.login(values, ()=>{
+                console.log('callback 成功');
+                browserHistory.push('/admin');
+            });
+        }
     },
 
     render() {
+        const {login, actions} = this.props;
         const {getFieldDecorator} = this.props.form;
         const formItemLayout={
             labelCol:{
@@ -24,6 +34,7 @@ let LoginForm = React.createClass({
                 span:14
             }
         };
+
         return (
             <div className="dialogModel">
                 <div className="loginWrapper">
@@ -49,4 +60,16 @@ let LoginForm = React.createClass({
 });
 
 let LoginDialog = Form.create()(LoginForm);
-export default LoginDialog;
+
+function mapStateToProps(state){
+    return {
+        login:state.login
+    }
+}
+
+function mapDispatchToProps(dispatch){
+    return {
+        actions:bindActionCreators(Actions,dispatch)
+    }
+}
+export default connect(mapStateToProps, mapDispatchToProps)(LoginDialog);

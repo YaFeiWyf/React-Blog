@@ -10,11 +10,12 @@ router.post('/',function(req, res){
     console.log(data);
     if(data['userName']=='wangyafei'&& data['pass']=='123456'){
         res.send({
-            result:'login success'
+            is_success:true,
+            authCookie:'029093'
         });
     }else {
         res.send({
-            result:'login fail'
+            is_success:false
         });
     }
 });

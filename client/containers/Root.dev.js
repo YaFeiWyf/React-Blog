@@ -9,7 +9,10 @@ export default class Root extends Component {
     const { store } = this.props;
     return (
       <Provider store={store}>
-        <App />
+        <div style={{height:'100%'}}>
+          <App />
+          <DevTools />
+        </div>
       </Provider>
     );
   }

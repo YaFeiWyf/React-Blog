@@ -10,13 +10,21 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  -webkit-transform: translate(-50%, -50);
-  -moz-transform: translate(-50%, -50);
-  -ms-transform: translate(-50%, -50);
-  -o-transform: translate(-50%, -50);
-  transform: translate(-50%, -50);
+  transform: translate(-50%, -50%);
   width: 40%;
   padding: 30px;
-  background: #ffffff; }
+  background: #ffffff;
+  border-radius: 10px; }
+
+.ant-form-item-label label {
+  font-size: 18px; }
+
+.ant-input-lg {
+  height: 48px;
+  font-size: 18px; }
+
+.ant-btn-lg {
+  width: 200px;
+  font-size: 18px; }
 
 /*# sourceMappingURL=index.css.map */

@@ -1,0 +1,24 @@
+.container {
+    width: 60%;
+    height: 100%;
+    padding-top: 20px;
+    margin-left: 40%;
+    background: #fff;
+    color: #333;
+}
+@font-face {
+    font-family: 'RobotoThin';
+    src: url('/static/font-face/roboto/roboto-thin.eot'); /* IE9 Compat Modes */
+    src: url('/static/font-face/roboto/roboto-thin.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/font-face/roboto/roboto-thin.woff') format('woff'), /* Modern Browsers */
+    url('/static/font-face/roboto/roboto-thin.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('/static/font-face/roboto/roboto-thin.svg#RobotoThin') format('svg'); /* Legacy iOS */
+}
+@font-face {
+    font-family: 'QiHei';
+    src: url('/static/font-face/qihei/qihei.eot'); /* IE9 Compat Modes */
+    src: url('/static/font-face/qihei/qihei.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+    url('/static/font-face/qihei/qihei.woff') format('woff'), /* Modern Browsers */
+    url('/static/font-face/qihei/qihei.ttf')  format('truetype'), /* Safari, Android, iOS */
+    url('/static/font-face/qihei/qihei.svg#RobotoThin') format('svg'); /* Legacy iOS */
+}
