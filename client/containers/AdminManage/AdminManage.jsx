@@ -11,17 +11,19 @@ class AdminManage extends Component {
 
     componentWillMount(){
         const {login} = this.props;
-        if(!login.is_login){
+        /*if(!login.is_login){
             alert('请登录');
             browserHistory.push('/');
-        }
+        }*/
     }
 
     render() {
         return (
             <div className="adminContainer container">
-                <div onClick={()=>actions.fetchTest()}>新增博客</div>
-                后台管理页面
+               {/* <div onClick={()=>actions.fetchTest()}>新增博客</div>*/}
+               <div className="titleWrap">
+                   <div className="adminTitle">后台管理页面</div>
+               </div>
                 <ContentEditor />
             </div>
         );
