@@ -11,7 +11,7 @@
 }
 .RichEditor-root {
     background: #EEEEEE;
-    border: 1px solid #ddd;
+    border: none;
     font-family: 'Georgia', serif;
     font-size: 14px;
 }
@@ -24,7 +24,6 @@
     width:90%;
     background-color: #fff;
     box-shadow: 0 0 0 0.75pt #d1d1d1,0 0 3pt 0.75pt #ccc;
-
 }
 
 .RichEditor-editor .public-DraftEditorPlaceholder-root,
@@ -55,4 +54,30 @@
     font-family: 'Inconsolata', 'Menlo', 'Consolas', monospace;
     font-size: 16px;
     padding: 20px;
+}
+.bottomBar {
+    position: fixed;
+    bottom: 0;
+    width: 60%;
+    height:80px;
+    line-height: 80px;
+    background-color: #265783;
+    text-align: center;
+    z-index: 999;
+    & .saveButton {
+        width: 200px;
+        font-size: 20px;
+        color: #fff;
+        display: inline-block;
+        text-align: center;
+        cursor: pointer;
+        line-height: 40px;
+        transition: all ease-in-out .4s;
+        vertical-align: middle;
+        border-radius: 10px;
+        background: rgba(0, 0, 0, 0.3);
+        &:hover {
+            color:#2db7f5;
+        }
+    }
 }

@@ -17,7 +17,7 @@ export default class EditorToolBar extends Component {
         } = this.props;
         return (
             <div className="editorToolBar">
-                <FontStyleControls editorState={editorState} onChange={changeFontStyle}/>
+                {/*<FontStyleControls editorState={editorState} onChange={changeFontStyle}/>*/}
                 <BlockStyleControls editorState={editorState} onToggle={toggleBlockType}/>
                 <InlineStyleControls editorState={editorState} onToggle={toggleInlineStyle}/>
             </div>

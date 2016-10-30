@@ -1,9 +1,23 @@
 var express = require('express');
 var router = express.Router();
+var fs = require('fs');
 
 router.get('/',function(res, req, next){
-    "use strict";
-    req.send({
+    fs.readFile('blog.json','utf-8', function(error, data){
+        if(error){
+            req.send('error');
+        }else {
+            var blogData = JSON.parse(data);
+            var blog = Object.assign({}, blogData, {content:blogData['plaintext']})
+            req.send({
+                is_success:true,
+                blogs:[
+                    blog
+                ]
+            });
+        }
+    });
+    /*req.send({
         is_success:true,
         blogs:[
             {
@@ -35,7 +49,7 @@ router.get('/',function(res, req, next){
                 publishDate:'2016-09-16'
             }
         ]
-    });
+    });*/
 });
 
 module.exports = router;

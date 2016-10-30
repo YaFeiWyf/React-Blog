@@ -26,6 +26,7 @@ export default class ContentEditor extends Component {
         this.state = {editorState: EditorState.createEmpty()};
         this.onChange = (editorState) => this.setState({editorState});
         this.handleKeyCommand = (command)=>this._handleKeyCommand(command);
+        this.changeFontStyle = ()=>this._changeFontStyle();
         this.toggleBlockType = (type)=>this._toggleBlockType(type);
         this.toggleInlineStyle = (style)=>this._toggleInlineStyle(style);
         this.focus = ()=>this.refs.editor.focus();
@@ -41,6 +42,10 @@ export default class ContentEditor extends Component {
         return 'not-handled';
     }
 
+    _changeFontStyle(){
+        console.log('font');
+    }
+
     _toggleBlockType(blockType){
         const {editorState} = this.state;
         this.onChange(RichUtils.toggleBlockType(editorState,blockType));
@@ -52,6 +57,7 @@ export default class ContentEditor extends Component {
     }
 
     render() {
+        const {saveBlog} = this.props;
         const {editorState} = this.state;
         const onToggle = {
             changeFontStyle:this.changeFontStyle,
@@ -62,6 +68,7 @@ export default class ContentEditor extends Component {
         // either style the placeholder or hide it. Let's just hide it now.
         let className = 'RichEditor-editor';
         var contentState = editorState.getCurrentContent();
+        var plaintext = contentState.getPlainText();
         if (!contentState.hasText()) {
             if (contentState.getBlockMap().first().getType() !== 'unstyled') {
                 className += ' RichEditor-hidePlaceholder';
@@ -82,6 +89,9 @@ export default class ContentEditor extends Component {
                         placeholder="Tell a story..."
                         spellCheck={true}
                     />
+                </div>
+                <div className="bottomBar">
+                    <span className="saveButton" onClick={()=>saveBlog(contentState,plaintext)}>保存</span>
                 </div>
             </div>
         );

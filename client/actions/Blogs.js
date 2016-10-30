@@ -74,6 +74,32 @@ export function initBlogContent(blogId) {
     }
 }
 
+export function saveBlog(content,plaintext){
+    return (dispatch)=>{
+        fetch('/blog/save',{
+            method:'POST',
+            mode:'cors',
+            Origin:'*',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                content:content,
+                plaintext:plaintext
+            })
+        })
+            .then(response=>response.json())
+            .then(json=>{
+                if(json.save_success){
+                    dispatch(addBlog(json.blog));
+                }else {
+                    console.log('save fail');
+                }
+            })
+            .catch(e=>console.log(e));
+    }
+}
+
 export function initBlogListSuccess(blogs) {
     return {
         type:INIT_BLOG_LIST_SUCCESS,
