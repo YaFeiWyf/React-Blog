@@ -1,8 +1,12 @@
 import React, {Component} from 'react';
-import {Editor, EditorState, RichUtils} from 'draft-js';
+import Draft, {EditorState, RichUtils} from 'draft-js';
+import Editor from 'draft-js-plugins-editor';
 import EditorToolBar from '../EditorComponents/EditorToolBar/EditorToolBar';
+import {browserHistory} from 'react-router';
 require('./index.css');
 require('./Draft.css');
+import createRichButtonsPlugin from 'draft-js-richbuttons-plugin';
+const richButtonsPlugin = createRichButtonsPlugin();
 
 function getBlockStyle(contentBlock){
     const blockType = contentBlock.getType();
@@ -30,6 +34,7 @@ export default class ContentEditor extends Component {
         this.toggleBlockType = (type)=>this._toggleBlockType(type);
         this.toggleInlineStyle = (style)=>this._toggleInlineStyle(style);
         this.focus = ()=>this.refs.editor.focus();
+        this.saveBlog = (contentState, plaintext)=>this._saveBlog(contentState, plaintext);
     }
 
     _handleKeyCommand(command) {
@@ -56,8 +61,15 @@ export default class ContentEditor extends Component {
         this.onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
     }
 
-    render() {
+    _saveBlog(rowData, plaintext){
         const {saveBlog} = this.props;
+        saveBlog(rowData , plaintext, ()=>{
+            console.log('跳转首页');
+            browserHistory.push('/');
+        });
+    }
+
+    render() {
         const {editorState} = this.state;
         const onToggle = {
             changeFontStyle:this.changeFontStyle,
@@ -68,6 +80,7 @@ export default class ContentEditor extends Component {
         // either style the placeholder or hide it. Let's just hide it now.
         let className = 'RichEditor-editor';
         var contentState = editorState.getCurrentContent();
+        var rowData = Draft.convertToRaw(contentState);
         var plaintext = contentState.getPlainText();
         if (!contentState.hasText()) {
             if (contentState.getBlockMap().first().getType() !== 'unstyled') {
@@ -88,10 +101,11 @@ export default class ContentEditor extends Component {
                         customStyleMap={styleMap}
                         placeholder="Tell a story..."
                         spellCheck={true}
+                        plugins={[richButtonsPlugin]}
                     />
                 </div>
                 <div className="bottomBar">
-                    <span className="saveButton" onClick={()=>saveBlog(contentState,plaintext)}>保存</span>
+                    <span className="saveButton" onClick={()=>this.saveBlog(rowData,plaintext)}>保存</span>
                 </div>
             </div>
         );

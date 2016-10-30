@@ -1,4 +1,4 @@
-import { INIT_BLOG_LIST_SUCCESS, INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, ADD_BLOG, DELETE_BLOG } from '../constants/ActionTypes';
+import { INIT_BLOG_LIST_SUCCESS, INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, SAVE_BLOG_SUCCESS, DELETE_BLOG } from '../constants/ActionTypes';
 
 const initState = {
 	blogs:[
@@ -42,14 +42,13 @@ function initBlogListFail() {
 }
 
 function showBlogContent(state, content) {
-    return Object.assign({},state,{blogContent:{content:content}});
+	console.log(JSON.stringify(content));
+    return Object.assign({},state,{blogContent:{content:content.content}});
 }
 
-function addBlog(state, blog){
+function saveBlogSuccess(state, blog){
 	let blogs = state['blogs'];
-	let length = blogs.length;
-	let newblog = Object.assign({}, blog, { id: length+1 });
-	blogs = [...blogs, newblog];
+	blogs = [...blogs, blog];
 	return Object.assign({}, state, {blogs: blogs});
 }
 
@@ -67,8 +66,8 @@ export default function blogs(state={blogs:[],blogContent:{}}, action){
 			return initBlogListFail(state);
         case SHOW_BLOG_CONTENT:
             return showBlogContent(state, action['content']);
-		case ADD_BLOG:
-			return addBlog(state, action['blog']);
+		case SAVE_BLOG_SUCCESS:
+			return saveBlogSuccess(state, action['blog']);
 		case DELETE_BLOG:
 			return deleteBlog(state, action['blog']);
 		default:

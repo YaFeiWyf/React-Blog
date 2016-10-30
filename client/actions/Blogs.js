@@ -1,4 +1,4 @@
-import { INIT_BLOG_LIST_SUCCESS,INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, ADD_BLOG, DELETE_BLOG } from '../constants/ActionTypes';
+import { INIT_BLOG_LIST_SUCCESS,INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, SAVE_BLOG_SUCCESS, DELETE_BLOG } from '../constants/ActionTypes';
 import fetch from 'isomorphic-fetch';
 
 export function fetchTest(){
@@ -64,7 +64,7 @@ export function initBlogContent(blogId) {
             .then(response=>response.json())
             .then(json=>{
                 if(json.is_success){
-                    console.log(JSON.stringify(json));
+                    //console.log(JSON.stringify(json.blogContent));
                     dispatch(showBlogContent(json.blogContent));
                 }
             })
@@ -74,7 +74,7 @@ export function initBlogContent(blogId) {
     }
 }
 
-export function saveBlog(content,plaintext){
+export function saveBlog(rowData,plaintext,callback){
     return (dispatch)=>{
         fetch('/blog/save',{
             method:'POST',
@@ -84,14 +84,15 @@ export function saveBlog(content,plaintext){
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
-                content:content,
+                rowData:rowData,
                 plaintext:plaintext
             })
         })
             .then(response=>response.json())
             .then(json=>{
                 if(json.save_success){
-                    dispatch(addBlog(json.blog));
+                    dispatch(saveBlogSuccess(json.blog));
+                    callback();
                 }else {
                     console.log('save fail');
                 }
@@ -120,9 +121,9 @@ export function showBlogContent(content) {
     }
 }
 
-export function addBlog(blog){
+export function saveBlogSuccess(blog){
 	return {
-		type:ADD_BLOG,
+		type:SAVE_BLOG_SUCCESS,
 		blog
 	}
 }

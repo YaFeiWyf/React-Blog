@@ -8,7 +8,7 @@ router.get('/',function(res, req, next){
             req.send('error');
         }else {
             var blogData = JSON.parse(data);
-            var blog = Object.assign({}, blogData, {content:blogData['plaintext']})
+            var blog = Object.assign({}, blogData, {content:blogData['plaintext']});
             req.send({
                 is_success:true,
                 blogs:[

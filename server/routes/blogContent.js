@@ -12,10 +12,11 @@ router.post('/save',function(req, res, next){
     var blog = {
         id:10,
         author:'wangyafei',
-        content:blogContent['content'],
+        content:blogContent['rowData'],
         plaintext:blogContent['plaintext']
     };
     var blogJson = JSON.stringify(blog);
+    blog = Object.assign({}, blog, {content:blog['plaintext']});
     fs.writeFile('blog.json', blogJson, function (error, data) {
         if(error){
             res.send({
@@ -64,7 +65,7 @@ router.post('/',function(req, res, next){
                     console.log(content);
                     res.send({
                         is_success:true,
-                        blogContent:content
+                        blogContent:blogData
                     });
                 }
             });
