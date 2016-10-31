@@ -22,6 +22,36 @@ module.exports=(
 );
 
 /*const rootRoute = {
+    path: '/',
+
+    getChildRoutes(partialNextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, [
+                require('./blog/index'),
+                require('./admin/index'),
+                require('./login/index')
+            ])
+        })
+    },
+
+/!*    getIndexRoute(partialNextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, {
+                component: require('../containers/Resume/Resume'),
+            })
+        })
+    },*!/
+
+    component: require('../containers/Resume/Resume'),
+
+    getComponents(nextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, require('../containers/Blog/Blog.jsx'))
+        })
+    }
+};*/
+
+/*const rootRoute = {
 	path: '/',
 	indexRoute: {
 		getComponent(nextState, cb) {

@@ -4,11 +4,11 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-var webpack = require('webpack');
+/*var webpack = require('webpack');
 var webpackDevMiddleware = require('webpack-dev-middleware');
 var webpackHotMiddleware = require('webpack-hot-middleware');
 var config = require('../webpack.config');
-var compiler = webpack(config);
+var compiler = webpack(config);*/
 
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -33,7 +33,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 //app.use(express.static(path.join(__dirname, 'public')));
 
-//set webpack dev
+/*//set webpack dev
 app.use(webpackDevMiddleware(compiler, {
     noInfo: true,
     publicPath: config.output.publicPath,
@@ -44,7 +44,28 @@ app.use(webpackDevMiddleware(compiler, {
     }
 }));
 
-app.use(webpackHotMiddleware(compiler));
+app.use(webpackHotMiddleware(compiler));*/
+
+// ************************************
+// This is the real meat of the example
+// ************************************
+(function() {
+
+    // Step 1: Create & configure a webpack compiler
+    var webpack = require('webpack');
+    var webpackConfig = require(process.env.WEBPACK_CONFIG ? process.env.WEBPACK_CONFIG : '../webpack.config');
+    var compiler = webpack(webpackConfig);
+
+    // Step 2: Attach the dev middleware to the compiler & the server
+    app.use(require("webpack-dev-middleware")(compiler, {
+        noInfo: true, publicPath: webpackConfig.output.publicPath
+    }));
+
+    // Step 3: Attach the hot middleware to the compiler & the server
+    app.use(require("webpack-hot-middleware")(compiler, {
+        log: console.log, path: '/__webpack_hmr', heartbeat: 10 * 1000
+    }));
+})();
 
 //set routers
 app.use('/bloglist', blogList);
