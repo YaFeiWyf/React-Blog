@@ -7,21 +7,21 @@ import LoginDialog from '../components/LoginDialog/LoginDialog';
 import AdminManage from '../containers/AdminManage/AdminManage';
 import {Router, Route, IndexRoute, Redirect} from 'react-router';
 
-module.exports=(
+/*module.exports=(
 	//主页
 	<Route path='/' component={Resume}>
-		{/*默认页*/}
+		{/!*默认页*!/}
 		<IndexRoute component={Blog}/>
 		<Route path='/blog' component={BlogContent}/>
 		<Route path='/blog/:id' component={BlogContent}/>
 		<Route path='/login' component={LoginDialog}/>
         <Route path='/admin' component={AdminManage}/>
-		{/* 其他重定向到 404 */}
+		{/!* 其他重定向到 404 *!/}
         <Redirect from='*' to='/404' />
 	</Route>
-);
+);*/
 
-/*const rootRoute = {
+const rootRoute = {
     path: '/',
 
     getChildRoutes(partialNextState, callback) {
@@ -34,13 +34,13 @@ module.exports=(
         })
     },
 
-/!*    getIndexRoute(partialNextState, callback) {
+/*    getIndexRoute(partialNextState, callback) {
         require.ensure([], function (require) {
             callback(null, {
                 component: require('../containers/Resume/Resume'),
             })
         })
-    },*!/
+    },*/
 
     component: require('../containers/Resume/Resume'),
 
@@ -49,7 +49,7 @@ module.exports=(
             callback(null, require('../containers/Blog/Blog.jsx'))
         })
     }
-};*/
+};
 
 /*const rootRoute = {
 	path: '/',
