@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="359ab6b1-86e0-4c06-ad68-9b52cd474f8a" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/containers/NotFoundPage/NotFoundPage.jsx" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/client/containers/NotFoundPage/index.scss" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/routes/404/index.js" afterPath="$PROJECT_DIR$/client/routes/404/index.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/client/routes/routes.js" afterPath="$PROJECT_DIR$/client/routes/routes.js" />
     </list>
     <ignored path="React-Blog.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -60,16 +58,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="package.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/chokidar/node_modules/fs/package.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="840">
-              <caret line="20" column="25" selection-start-line="20" selection-start-column="25" selection-end-line="20" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="routes.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/routes/routes.js">
           <provider selected="true" editor-type-id="text-editor">
@@ -102,11 +90,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="NotFoundPage.jsx" pinned="false" current-in-tab="true">
+      <file leaf-file-name="NotFoundPage.jsx" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/client/containers/NotFoundPage/NotFoundPage.jsx">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="42">
-              <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+            <state relative-caret-position="420">
+              <caret line="10" column="40" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="40" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.scss" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/client/containers/NotFoundPage/index.scss">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
               <folding />
             </state>
           </provider>
@@ -138,9 +136,9 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Pug File" />
-        <option value="SCSS File" />
         <option value="JavaScript File" />
         <option value="React JSX" />
+        <option value="SCSS File" />
       </list>
     </option>
   </component>
@@ -158,7 +156,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/client/reducers/index.js" />
         <option value="$PROJECT_DIR$/server/routes/login.js" />
         <option value="$PROJECT_DIR$/client/containers/Admin/index.scss" />
         <option value="$PROJECT_DIR$/client/containers/Admin/Admin.jsx" />
@@ -209,6 +206,7 @@
         <option value="$PROJECT_DIR$/client/routes/routes.js" />
         <option value="$PROJECT_DIR$/client/routes/404/index.js" />
         <option value="$PROJECT_DIR$/client/containers/NotFoundPage/NotFoundPage.jsx" />
+        <option value="$PROJECT_DIR$/client/containers/NotFoundPage/index.scss" />
       </list>
     </option>
   </component>
@@ -587,7 +585,7 @@
       <workItem from="1477723981846" duration="15724000" />
       <workItem from="1477797323754" duration="31336000" />
       <workItem from="1477909511134" duration="9454000" />
-      <workItem from="1478005249308" duration="347000" />
+      <workItem from="1478005249308" duration="568000" />
     </task>
     <task id="LOCAL-00001" summary="add login dialog">
       <created>1476280217640</created>
@@ -680,11 +678,18 @@
       <option name="project" value="LOCAL" />
       <updated>1477921857272</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="config dynamic router and add notFoundPage">
+      <created>1478005634630</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1478005634630</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="125952000" />
+    <option name="totallyTimeSpent" value="126173000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -704,7 +709,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.47272727" sideWeight="0.50213444" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18390192" sideWeight="0.5072303" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.7260579" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.050790068" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.050111357" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.60045147" sideWeight="0.49786553" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.18390192" sideWeight="0.5072303" order="2" side_tool="true" content_ui="tabs" />
@@ -744,7 +749,8 @@
     <MESSAGE value="Represents Rich Text Data" />
     <MESSAGE value="add blog.json data" />
     <MESSAGE value="config hot reload on server side" />
-    <option name="LAST_COMMIT_MESSAGE" value="config hot reload on server side" />
+    <MESSAGE value="config dynamic router and add notFoundPage" />
+    <option name="LAST_COMMIT_MESSAGE" value="config dynamic router and add notFoundPage" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -753,13 +759,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/client/common.scss">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="378">
-          <caret line="9" column="28" selection-start-line="9" selection-start-column="18" selection-end-line="9" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/client/index.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="7392">
@@ -1121,8 +1120,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/client/containers/NotFoundPage/NotFoundPage.jsx">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="42">
-          <caret line="1" column="15" selection-start-line="1" selection-start-column="15" selection-end-line="1" selection-end-column="15" />
+        <state relative-caret-position="420">
+          <caret line="10" column="40" selection-start-line="10" selection-start-column="28" selection-end-line="10" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/client/containers/NotFoundPage/index.scss">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="5" column="15" selection-start-line="5" selection-start-column="15" selection-end-line="5" selection-end-column="15" />
           <folding />
         </state>
       </provider>
