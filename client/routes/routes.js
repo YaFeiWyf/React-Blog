@@ -34,22 +34,21 @@ const rootRoute = {
         })
     },
 
-/*    getIndexRoute(partialNextState, callback) {
+    getIndexRoute(partialNextState, callback) {
         require.ensure([], function (require) {
             callback(null, {
-                component: require('../containers/Resume/Resume'),
+                component: require('../containers/Resume/Resume').default,
             })
         })
-    },*/
+    },
 
-    component: require('../containers/Resume/Resume'),
-
-    getComponents(nextState, callback) {
+    getComponent(nextState, callback) {
         require.ensure([], function (require) {
-            callback(null, require('../containers/Blog/Blog.jsx'))
+            callback(null, require('../containers/Blog/Blog').default)
         })
     }
 };
+module.exports = rootRoute;
 
 /*const rootRoute = {
 	path: '/',
