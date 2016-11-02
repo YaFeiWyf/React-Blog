@@ -8,7 +8,7 @@ My blog project which is based on React and Redux
 First, clone the project:
 
 ```
-https://github.com/YaFeiWyf/React-Blog.git
+https://github.com/yvanwangl/React-Blog.git
 ```
 
 Then install the dependencies in the root folder:
