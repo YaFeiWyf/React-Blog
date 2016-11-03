@@ -36,5 +36,6 @@ open http://localhost:3000
 #Personal website
 
 Here is my [personal website](http://www.yvanwang.com/).
-Let's be friends
+
+Let's be friend.
 
