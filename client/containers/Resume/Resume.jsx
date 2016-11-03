@@ -39,7 +39,7 @@ class Resume extends Component {
 					<p className='personalInfo'>{resumeInfo.personalInfo}</p>
 					<p className="currentState">{resumeInfo.currentState}</p>
                     <div className="buttons">
-                        <NavLink className="indexPage button" to='/'>首页</NavLink>
+                        <NavLink className="indexPage button" to='/'>首页sfdsdfsdf</NavLink>
                         <NavLink className="login button" onClick={this.logClick.bind(this)}>{login.is_login?'退出':'登录'}</NavLink>
                     </div>
 

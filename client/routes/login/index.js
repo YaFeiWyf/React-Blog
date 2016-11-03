@@ -6,7 +6,7 @@ module.exports = {
 
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('../../components/LoginDialog/LoginDialog'))
+            cb(null, require('../../components/LoginDialog/LoginDialog').default)
         })
     }
 };

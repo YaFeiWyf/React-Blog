@@ -24,29 +24,33 @@ import {Router, Route, IndexRoute, Redirect} from 'react-router';
 const rootRoute = {
     path: '/',
 
+    /*匹配/路由的页面*/
+    getComponent(nextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, require('../containers/Resume/Resume').default)
+        })
+    },
+
+    /*默认的首页页面*/
+    getIndexRoute(partialNextState, callback) {
+        require.ensure([], function (require) {
+            callback(null, {
+                component: require('../containers/Blog/Blog').default
+            })
+        })
+    },
+
+    /*子路由*/
     getChildRoutes(partialNextState, callback) {
         require.ensure([], function (require) {
             callback(null, [
                 require('./blog/index'),
                 require('./admin/index'),
-                require('./login/index')
+                require('./login/index'),
+                require('./blogContent/index')
             ])
         })
     },
-
-    getIndexRoute(partialNextState, callback) {
-        require.ensure([], function (require) {
-            callback(null, {
-                component: require('../containers/Resume/Resume').default,
-            })
-        })
-    },
-
-    getComponent(nextState, callback) {
-        require.ensure([], function (require) {
-            callback(null, require('../containers/Blog/Blog').default)
-        })
-    }
 };
 module.exports = rootRoute;
 

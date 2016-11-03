@@ -6,7 +6,7 @@ module.exports = {
 
     getComponent(nextState, cb) {
         require.ensure([], (require) => {
-            cb(null, require('../../containers/NotFoundPage/NotFoundPage'))
+            cb(null, require('../../containers/NotFoundPage/NotFoundPage').default)
         }, 'NotFoundPage')
     }
 };

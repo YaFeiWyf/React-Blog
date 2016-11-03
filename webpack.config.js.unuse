@@ -1,0 +1,87 @@
+/*eslint-disable no-var */
+
+var fs = require('fs');
+var path = require('path');
+var webpack = require('webpack');
+var rucksack = require('rucksack-css');
+var hotMiddlewareScript = 'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000&reload=true';
+
+module.exports = {
+
+    devtool: '#source-map',
+
+    // Expose __dirname to allow automatically setting basename.
+    context: path.join(__dirname, './client'),
+
+    entry: {
+        jsx: ['./index.js', hotMiddlewareScript],
+        html: ['./index.html', hotMiddlewareScript],
+        vendor: [
+            'react',
+            'react-dom',
+            'react-redux',
+            'react-router',
+            'react-router-redux',
+            'redux',
+            'antd',
+            'draft-js',
+            hotMiddlewareScript
+        ]
+    },
+
+    output: {
+        path: __dirname + '/__build__',
+        filename: '[name].js',
+        chunkFilename: '[id].chunk.js',
+        publicPath: '/__build__/'
+    },
+
+    module: {
+        loaders: [
+            {
+                test: /\.html$/,
+                loader: 'file?name=[name].[ext]'
+            },
+            {
+                test: /\.css$/,
+                loader: 'style-loader!css-loader'
+            },
+            {
+                test: /\.(png|jpg)$/,
+                loader: 'url-loader'
+                //loader: 'url-loader?limit=8192'
+            }, // inline base64 URLs for <=8k images, direct URLs for the rest
+            {
+                test: /\.(js|jsx)$/,
+                exclude: /node_modules/,
+                loaders: [
+                    'react-hot',
+                    'babel-loader'
+                ]
+            },
+        ],
+    },
+    resolve: {
+        extensions: ['', '.js', '.jsx']
+    },
+    postcss: [
+        rucksack({
+            autoprefixer: true
+        })
+    ],
+
+/*    node: {
+        __dirname: true
+    },*/
+
+    plugins: [
+        /*new webpack.optimize.CommonsChunkPlugin('shared.js'),*/
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+        new webpack.DefinePlugin({
+            'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}
+        }),
+        new webpack.NoErrorsPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ]
+
+}
