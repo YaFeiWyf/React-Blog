@@ -69,6 +69,13 @@ export default class ContentEditor extends Component {
         });
     }
 
+    componentWillMount(){
+        let {editData} = this.props;
+        if(editData){
+            this.setState({editorState:EditorState.createWithContent(Draft.convertFromRaw(editData))});
+        }
+    }
+
     render() {
         const {editorState} = this.state;
         const onToggle = {

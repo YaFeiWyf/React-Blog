@@ -48,7 +48,7 @@ export function initBlogList(){
 	}
 }
 
-export function initBlogContent(blogId) {
+export function initBlogContent(blogId,callback) {
     return (dispatch)=>{
         fetch('/blog',{
             method:'POST',
@@ -66,6 +66,9 @@ export function initBlogContent(blogId) {
                 if(json.is_success){
                     //console.log(JSON.stringify(json.blogContent));
                     dispatch(showBlogContent(json.blogContent));
+                    if(callback){
+                        callback();
+                    }
                 }
             })
             .catch(e=>{

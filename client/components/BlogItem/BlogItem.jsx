@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import NavLink from '../NavLink/NavLink';
-require ('./index.css');
+import {browserHistory} from 'react-router';
+require('./index.css');
 
 export default class BlogItem extends Component {
-	constructor(props){
-		super(props);
-	}
-	render(){
-		const { blogData } = this.props;
-		return (
-			<NavLink to={'/blog/'+blogData.id}>
-				<li className='blogItem'>
-					<h1>{blogData.title}</h1>
-					<p className='blogContent'>{blogData.content}</p>
-					<p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>
-				</li>
-			</NavLink>
-		);
-	}
+    constructor(props) {
+        super(props);
+    }
+
+    editButtonClick (){
+        const {blogData, loadBlogData} = this.props;
+        loadBlogData(blogData.id,()=>{
+            browserHistory.push("/admin/"+blogData.id);
+        });
+
+    }
+
+    render() {
+        const {blogData, showEdit} = this.props;
+        return (
+                <li className='blogItem'>
+                    <NavLink to={'/blog/' + blogData.id}>
+                        <h1>{blogData.title}</h1>
+                        <p className='blogContent'>{blogData.content}</p>
+                        <p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>
+                    </NavLink>
+                    { showEdit ? <span className="editButton" onClick={this.editButtonClick.bind(this)}>编辑</span> : null }
+                </li>
+        );
+    }
 }

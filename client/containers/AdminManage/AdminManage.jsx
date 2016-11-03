@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import ContentEditor from '../../components/ContentEditor/ContentEditor';
-import {saveBlog} from '../../actions/Blogs';
+import * as Actions from '../../actions/Blogs';
 require('./index.css');
 
 class AdminManage extends Component {
@@ -11,37 +11,42 @@ class AdminManage extends Component {
         super(props);
     }
 
-    componentWillMount(){
+    componentWillMount() {
         const {login} = this.props;
-        /*if(!login.is_login){
+        if (!login.is_login) {
             alert('请登录');
             browserHistory.push('/');
-        }*/
+        }
     }
 
     render() {
-        let {saveBlog} = this.props;
+        let {actions, blogContent} = this.props;
+        let editData = null;
+        if (this.props.params.id) {
+            editData = blogContent;
+        }
         return (
             <div className="adminContainer container">
-               {/* <div onClick={()=>actions.fetchTest()}>新增博客</div>*/}
-               <div className="titleWrap">
-                   <div className="adminTitle">后台管理页面</div>
-               </div>
-                <ContentEditor saveBlog={saveBlog}/>
+                {/* <div onClick={()=>actions.fetchTest()}>新增博客</div>*/}
+                <div className="titleWrap">
+                    <div className="adminTitle">后台管理页面</div>
+                </div>
+                <ContentEditor saveBlog={actions.saveBlog} editData={editData}/>
             </div>
         );
     }
 }
 
-function mapStateToProps(state){
+function mapStateToProps(state) {
     return {
-        login:state.login
+        login: state.login,
+        blogContent: state.blogs.blogContent.content
     }
 }
 
-function mapDispatchToProps(dispatch){
+function mapDispatchToProps(dispatch) {
     return {
-        saveBlog:bindActionCreators(saveBlog, dispatch)
+        actions: bindActionCreators(Actions, dispatch)
     }
 }
 

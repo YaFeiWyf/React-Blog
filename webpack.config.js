@@ -21,15 +21,12 @@ var baseConfig = {
             hotMiddlewareScript
         ]
     },
-    /*entry: [
-     // Add the client which connects to our middleware
-     // You can use full urls like 'webpack-hot-middleware/client?path=http://localhost:3000/__webpack_hmr'
-     // useful if you run your app from another point like django
-     'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
-     // And then the actual application
-     './index.js',
-     './index.html'
-     ],*/
+    output: {
+        path: path.join(__dirname, './static'),
+        filename: '[name].js',
+        chunkFilename: '[id].[chunkhash:5].chunk.js',
+        publicPath: '/__build__/'
+    },
     devtool: '#source-map',
     module: {
         loaders: [
@@ -64,68 +61,15 @@ var baseConfig = {
             autoprefixer: true
         })
     ],
-    devServer: {
-        contentBase: './client',
-        hot: true
-    }
-}
+    plugins: [
+        new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
+        new webpack.DefinePlugin({
+            'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}
+        }),
+        new webpack.NoErrorsPlugin(),
+        new webpack.HotModuleReplacementPlugin()
+    ]
+};
 /* end baseConfig */
 
-/* get env */
-function getEnv() {
-    const args = require('minimist')(process.argv.slice(2));
-    var env;
-    if (args._.length > 0 && args._.indexOf('start') !== -1) {
-        env = 'test';
-    } else if (args.env) {
-        env = args.env;
-    } else {
-        env = 'dev';
-    }
-    return env
-}
-
-var env = getEnv();
-/* end get env */
-
-/*define envConfig*/
-var envConfig = {
-    'build': {
-        output: {
-            path: path.join(__dirname, './static'),
-            filename: 'bundle-[hash:6].js',
-        },
-        plugins: [
-            new webpack.optimize.UglifyJsPlugin(),
-            new webpack.optimize.DedupePlugin(),
-            new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-            new webpack.DefinePlugin({
-                'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}
-            }),
-            new webpack.optimize.OccurrenceOrderPlugin(),
-            new webpack.optimize.AggressiveMergingPlugin(),
-            new webpack.NoErrorsPlugin(),
-            new webpack.HotModuleReplacementPlugin()
-        ]
-    },
-    'dev': {
-        output: {
-            path: path.join(__dirname, './static'),
-            filename: '[name].js',
-            chunkFilename: '[id].[chunkhash:5].chunk.js',
-            publicPath: '/__build__/'
-        },
-        plugins: [
-            new webpack.optimize.CommonsChunkPlugin('vendor', 'vendor.bundle.js'),
-            new webpack.DefinePlugin({
-                'process.env': {NODE_ENV: JSON.stringify(process.env.NODE_ENV || 'development')}
-            }),
-            new webpack.NoErrorsPlugin(),
-            new webpack.HotModuleReplacementPlugin()
-        ]
-    }
-}
-
-/* end define envConfig*/
-
-module.exports = Object.assign({}, baseConfig, envConfig[env])
+module.exports = baseConfig;
