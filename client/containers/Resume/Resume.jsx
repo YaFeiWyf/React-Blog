@@ -1,6 +1,7 @@
 'use strict';
 
 import React, {Component} from 'react';
+/*import ReactCSSTransitionGroup from 'react-addons-css-transition-group';*/
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 import * as Actions from '../../actions/Resume';
@@ -8,15 +9,13 @@ import {logOut} from '../../actions/Login';
 import imgSrc from './images/logo.jpg';
 import NavLink from '../../components/NavLink/NavLink';
 import {browserHistory} from 'react-router';
+import $ from 'jquery';
 require ('./index.css');
 require ('./images/logo.jpg');
 
 class Resume extends Component {
 	constructor(props){
 		super(props);
-        this.state = {
-			showBackButton:false
-		};
 	}
 
     logClick(){
@@ -29,21 +28,37 @@ class Resume extends Component {
         }
     }
 
+	onHoverEvent(event){
+	    let windowHeight = $(window).height();
+	    let halfWindowHeight = windowHeight/2;
+        let pageY = event.pageY;
+        let resumeContianer = this.refs.resumeContianer;
+        let $resumeContianer = $(resumeContianer);
+        let resumeContianerHeight = $resumeContianer.innerHeight();
+        let diffHeight = resumeContianerHeight-windowHeight;
+        if(pageY>halfWindowHeight){
+            $resumeContianer.css({top:-diffHeight+"px"});
+        }else {
+            $resumeContianer.css({top:0});
+        }
+	}
+
 	render(){
 		const { resumeInfo,login, actions } = this.props;
 		return (
 			<div className="rootContainer">
-				<div className='resumeContianer'>
-					<img src={imgSrc} alt="me"/>
-					<h1 className='resumeTitle'>{resumeInfo.resumeTitle}</h1>
-					<p className='personalInfo'>{resumeInfo.personalInfo}</p>
-					<p className="currentState">{resumeInfo.currentState}</p>
-                    <div className="buttons">
-                        <NavLink className="indexPage button" to='/'>首页</NavLink>
-                        <NavLink className="login button" onClick={this.logClick.bind(this)}>{login.is_login?'退出':'登录'}</NavLink>
+                <div className="resumeWrap">
+                    <div className="resumeContianer" ref="resumeContianer" onMouseOver={this.onHoverEvent.bind(this)}>
+                        <img src={imgSrc} alt="me"/>
+                        <h1 className='resumeTitle'>{resumeInfo.resumeTitle}</h1>
+                        <p className='personalInfo'>{resumeInfo.personalInfo}</p>
+                        <p className="currentState">{resumeInfo.currentState}</p>
+                        <div className="buttons">
+                            <NavLink className="indexPage button" to='/'>首页</NavLink>
+                            <NavLink className="login button" onClick={this.logClick.bind(this)}>{login.is_login?'退出':'登录'}</NavLink>
+                        </div>
                     </div>
-
-				</div>
+                </div>
 				{this.props.children}
 			</div>
 

@@ -1,17 +1,22 @@
 .rootContainer {
   height: 100%; }
 
-.resumeContianer {
+.resumeWrap {
   position: fixed;
   left: 0;
   top: 0;
   bottom: 0;
-  width: 40%;
+  width: 40%; }
+
+.resumeContianer {
   /*background: url("./images/background.jpg") no-repeat fixed;
   background-size: cover;*/
+  position: relative;
+  width: 100%;
   background-color: #2a2f3a;
   text-align: center;
-  padding-top: 30px; }
+  padding-top: 30px;
+  transition: all ease-in-out .5s; }
   .resumeContianer img {
     width: 150px;
     height: 150px;
@@ -42,7 +47,11 @@
   text-align: center;
   color: #fff;
   background: rgba(255, 255, 255, 0.3);
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1); }
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3); }
+
+.buttons {
+  margin-top: 180px;
+  padding-bottom: 50px; }
 
 .button {
   display: inline-block;
@@ -53,7 +62,7 @@
   font-size: 16px;
   color: #fff;
   background-color: rgba(0, 0, 0, 0.3);
-  margin: 200px 20px 0;
+  margin: 20px 0;
   border-radius: 10px; }
 
 /*# sourceMappingURL=index.css.map */
