@@ -78,7 +78,7 @@ class Blog extends Component {
                 <ul>
                     {blogItems}
                 </ul>
-                <ListSortContainer/>
+                {/*<ListSortContainer/>*/}
                 {/*<LoginDialog onLogin={this.submitLoginInfo.bind(this)}/>*/}
 
             </div>
