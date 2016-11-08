@@ -91,7 +91,7 @@ export default class ContentEditor extends Component {
         var plaintext = contentState.getPlainText();
         if (!contentState.hasText()) {
             if (contentState.getBlockMap().first().getType() !== 'unstyled') {
-                className += ' RichEditor-hidePlaceholder';
+                className = `${className}+' RichEditor-hidePlaceholder'`;
             }
         }
 
