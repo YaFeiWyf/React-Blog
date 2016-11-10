@@ -34,7 +34,7 @@ export default class ContentEditor extends Component {
         this.toggleBlockType = (type)=>this._toggleBlockType(type);
         this.toggleInlineStyle = (style)=>this._toggleInlineStyle(style);
         this.focus = ()=>this.refs.editor.focus();
-        this.saveBlog = (contentState, plaintext)=>this._saveBlog(contentState, plaintext);
+        this.saveBlog = (id, contentState, plaintext)=>this._saveBlog(id, contentState, plaintext);
     }
 
     _handleKeyCommand(command) {
@@ -61,9 +61,9 @@ export default class ContentEditor extends Component {
         this.onChange(RichUtils.toggleInlineStyle(editorState, inlineStyle));
     }
 
-    _saveBlog(rowData, plaintext){
+    _saveBlog(id, rowData, plaintext){
         const {saveBlog} = this.props;
-        saveBlog(rowData , plaintext, ()=>{
+        saveBlog(id, rowData , plaintext, ()=>{
             console.log('跳转首页');
             browserHistory.push('/');
         });
@@ -72,12 +72,14 @@ export default class ContentEditor extends Component {
     componentWillMount(){
         let {editData} = this.props;
         if(editData){
-            this.setState({editorState:EditorState.createWithContent(Draft.convertFromRaw(editData))});
+            this.setState({editorState:EditorState.createWithContent(Draft.convertFromRaw(editData['content']))});
         }
     }
 
     render() {
         const {editorState} = this.state;
+        const {editData} = this.props;
+        let id=null;
         const onToggle = {
             changeFontStyle:this.changeFontStyle,
             toggleBlockType:this.toggleBlockType,
@@ -94,6 +96,10 @@ export default class ContentEditor extends Component {
                 className = `${className}+' RichEditor-hidePlaceholder'`;
             }
         }
+        if(editData){
+            let id=editData['_id'];
+        }
+
 
         return (
             <div className="contentEditor RichEditor-root">
@@ -112,7 +118,7 @@ export default class ContentEditor extends Component {
                     />
                 </div>
                 <div className="bottomBar">
-                    <span className="saveButton" onClick={()=>this.saveBlog(rowData,plaintext)}>保存</span>
+                    <span className="saveButton" onClick={()=>this.saveBlog(id,rowData,plaintext)}>保存</span>
                 </div>
             </div>
         );

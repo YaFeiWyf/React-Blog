@@ -40,7 +40,7 @@ class AdminManage extends Component {
 function mapStateToProps(state) {
     return {
         login: state.login,
-        blogContent: state.blogs.blogContent.content
+        blogContent: state.blogs.blog
     }
 }
 

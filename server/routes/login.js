@@ -1,21 +1,83 @@
 /**
- * Created by hanlu on 2016/10/12.
+ * Created by wyf on 2016/10/12.
  */
 var express = require('express');
 var router = express.Router();
-var mongoose = require('mongoose');
-//mongoose.connect('mongodb://127.0.0.1:27017/blog');
-var dbConnect = mongoose.createConnection('mongodb://127.0.0.1:27017/blog');
-dbConnect.on('error',function(error){
-    console.log(error);
-});
-var Schema = mongoose.Schema;
+var User = require('../models/user');
 //var dbConnect = require('../db/dbConnect');
 
 router.post('/',function(req, res){
     var data = req.body;
-    console.log(data);
-    dbConnect.once('open',function(){
+   /* var user = new User({
+        userName:'wangyafei',
+        password:'123456'
+    });
+    user.save(function (err) {
+        if (err) return handleError(err);
+    });*/
+    User.find({userName:data['userName']},function(err, userList){
+        console.log(data['pass']);
+        console.log(userList[0]['password']);
+        console.log(data['pass']==userList[0]['password']);
+        if(err){
+            console.log(err);
+        }else {
+            if(data['pass']==userList[0]['password']){
+                res.send({
+                    is_success:true,
+                    authCookie:'029093'
+                });
+            }else {
+                res.send({
+                    is_success:false
+                });
+            }
+        }
+    });
+    /*db.on('connected', function () {
+        /!*mongoose.connection.db.collectionNames(function (err, names) {
+            if (err) console.log(err);
+            else console.log(names);
+        });*!/
+        console.log(data);
+        console.log('running');
+    });*/
+    /*db.once('open', function() {
+        // we're connected!
+        console.log('connected');
+        console.log('running');
+        var userSchema = new Schema({
+            userName:String,
+            password:String
+        });
+
+        var User = mongoose.model('User', userSchema);
+        var user = new User({
+            userName:'wangyafei',
+            password:'123456'
+        });
+        user.save(function (err) {
+            if (err) return handleError(err);
+            // saved!
+        });
+        User.find({userName:data['userName']},function(err, user){
+            if(err){
+                console.log(err);
+            }else {
+                if(data['pass']==user['password']){
+                    res.send({
+                        is_success:true,
+                        authCookie:'029093'
+                    });
+                }else {
+                    res.send({
+                        is_success:false
+                    });
+                }
+            }
+        });
+    });*/
+    /*dbConnect.once('open',function(){
         console.log('running');
         var userSchema = new Schema({
             userName:String,
@@ -43,7 +105,7 @@ router.post('/',function(req, res){
                 }
             }
         });
-    });
+    });*/
 
     /*if(data['userName']=='wangyafei'&& data['pass']=='123456'){
         res.send({

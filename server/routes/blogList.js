@@ -1,10 +1,20 @@
+'use strict';
 var express = require('express');
 var router = express.Router();
-var fs = require('fs');
-var DataController = require('../api/DataController');
+var Blog = require('../models/blogs');
 
 router.get('/',function(res, req, next){
-    fs.readFile('blog.json','utf-8', function(error, data){
+    Blog.find(function(err, blogList){
+        if(err){
+            console.log(err);
+        }else {
+            req.send({
+                is_success:true,
+                blogs:blogList
+            });
+        }
+    });
+    /*fs.readFile('blog.json','utf-8', function(error, data){
         if(error){
             req.send('error');
         }else {
@@ -21,7 +31,7 @@ router.get('/',function(res, req, next){
                 ]
             });
         }
-    });
+    });*/
 });
 
 module.exports = router;

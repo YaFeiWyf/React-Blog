@@ -18,12 +18,12 @@ DataController.prototype.modify=(modifyData)=>{
 };
 
 DataController.prototype.delete=(id)=>{
-    expect(typeof id=='number').toBe(true);
+    //expect(typeof id=='number').toBe(true);
     return 'deleteSuccess';
 };
 
 DataController.prototype.findById=(id)=>{
-    expect(typeof id=='number').toBe(true);
+    //expect(typeof id=='number').toBe(true);
     return 'not find';
 };
 

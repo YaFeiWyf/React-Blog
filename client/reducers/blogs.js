@@ -41,9 +41,10 @@ function initBlogListFail() {
 	return Object.assign({},state,{errorMsg:'init fail'});
 }
 
-function showBlogContent(state, content) {
-	console.log(JSON.stringify(content));
-    return Object.assign({},state,{blogContent:{content:content.content}});
+function showBlogContent(state, blog) {
+	//console.log(JSON.stringify(blog));
+	var blogData = Object.assign({},blog,{content:JSON.parse(blog['content'])});
+    return Object.assign({},state,{blog:blogData});
 }
 
 function saveBlogSuccess(state, blog){
@@ -58,14 +59,14 @@ function deleteBlog(state, blog){
 	return Object.assign({}, state, {blogs: blogs});
 }
 
-export default function blogs(state={blogs:[],blogContent:{}}, action){
+export default function blogs(state={blogs:[],blog:{}}, action){
 	switch(action.type){
 		case INIT_BLOG_LIST_SUCCESS:
 			return initBlogListSuccess(state, action['blogs']);
 		case INIT_BLOG_LIST_FAIL:
 			return initBlogListFail(state);
         case SHOW_BLOG_CONTENT:
-            return showBlogContent(state, action['content']);
+            return showBlogContent(state, action['blog']);
 		case SAVE_BLOG_SUCCESS:
 			return saveBlogSuccess(state, action['blog']);
 		case DELETE_BLOG:

@@ -65,7 +65,7 @@ export function initBlogContent(blogId,callback) {
             .then(json=>{
                 if(json.is_success){
                     //console.log(JSON.stringify(json.blogContent));
-                    dispatch(showBlogContent(json.blogContent));
+                    dispatch(showBlogContent(json.blog));
                     if(callback){
                         callback();
                     }
@@ -77,7 +77,7 @@ export function initBlogContent(blogId,callback) {
     }
 }
 
-export function saveBlog(rowData,plaintext,callback){
+export function saveBlog(id,rowData,plaintext,callback){
     return (dispatch)=>{
         fetch('/blog/save',{
             method:'POST',
@@ -87,6 +87,7 @@ export function saveBlog(rowData,plaintext,callback){
                 'Content-Type':'application/json'
             },
             body:JSON.stringify({
+                id:id,
                 rowData:rowData,
                 plaintext:plaintext
             })
@@ -117,10 +118,10 @@ export function initBlogListFail() {
     }
 }
 
-export function showBlogContent(content) {
+export function showBlogContent(blog) {
     return {
         type:SHOW_BLOG_CONTENT,
-        content
+        blog
     }
 }
 

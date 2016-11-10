@@ -1,15 +1,54 @@
+"use strict";
 var path = require('path');
 var express = require('express');
 var router = express.Router();
 var fs = require('fs');
+var Blog = require('../models/blogs');
 
 /*router.get('/(:id)',function(req, res, next){
     res.sendfile(path.resolve(__dirname,'../../client','index.html'));
 });*/
+function saveBlog(blog, res){
+    blog.save(function(err){
+        if(err){
+            console.log(err);
+        }else {
+            res.send({
+                save_success:true,
+                blog:blog
+            });
+        }
+    });
+}
 
 router.post('/save',function(req, res, next){
-    var blogContent = req.body;
-    var blog = {
+    var blogData = req.body;
+    blogData['title']='这是第一篇博客';
+    /**
+     * 判断是新增还是修改
+     */
+    Blog.find({_id:blogData['id']},function(err, blogList){
+        //修改
+        if(blogList.length>0){
+            var blog = Object.assign({},blogList[0],blogData);
+            saveBlog(blog, res);
+        }else {
+            Blog.find(function(err, blogList){
+                var blog = new Blog({
+                    id:blogList.length+1,
+                    author:'wangyafei',
+                    title:blogData['title'],
+                    content:JSON.stringify(blogData['rowData']),
+                    plaintext:blogData['plaintext'],
+                    publishDate:new Date()
+                });
+                saveBlog(blog, res);
+            });
+        }
+    });
+
+
+    /*var blog = {
         id:10,
         author:'wangyafei',
         content:blogContent['rowData'],
@@ -29,12 +68,22 @@ router.post('/save',function(req, res, next){
                 blog:blog
             });
         }
-    })
+    })*/
 });
 
 router.post('/',function(req, res, next){
     var blogId = parseInt(req.body.blogId);
-    var content = '';
+    Blog.find(blogId,function(err, blogList){
+        if(err){
+            console.log(err);
+        }else {
+            res.send({
+                is_success:true,
+                blog:blogList[0]
+            });
+        }
+    });
+    /*var content = '';
     switch(blogId){
         case 1:
             content = '这是第一篇博客';
@@ -55,11 +104,11 @@ router.post('/',function(req, res, next){
                     req.send('error');
                 }else {
                     var blogData = JSON.parse(data);
-                    /*var blog = Object.assign({}, blogData, {content:blogData['plaintext']});*/
-                    /*req.send({
+                    /!*var blog = Object.assign({}, blogData, {content:blogData['plaintext']});*!/
+                    /!*req.send({
                         is_success:true,
                         blogContent:blogData['plaintext']
-                    });*/
+                    });*!/
                     console.log(blogData['plaintext']);
                     content = blogData['plaintext'];
                     console.log(content);
@@ -73,7 +122,7 @@ router.post('/',function(req, res, next){
         default:
             content = '该博客不存在';
             console.log(blogId+'no');
-    }
+    }*/
     /*res.send({
         is_success:true,
         blogContent:content

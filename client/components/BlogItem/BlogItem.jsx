@@ -10,7 +10,7 @@ export default class BlogItem extends Component {
 
     editButtonClick (){
         const {blogData, loadBlogData} = this.props;
-        loadBlogData(blogData.id,()=>{
+        loadBlogData(blogData['_id'],()=>{
             browserHistory.push("/admin/"+blogData.id);
         });
 
@@ -22,7 +22,7 @@ export default class BlogItem extends Component {
                 <li className='blogItem'>
                     <NavLink to={'/blog/' + blogData.id}>
                         <h1>{blogData.title}</h1>
-                        <p className='blogContent'>{blogData.content}</p>
+                        <p className='blogContent'>{blogData.plaintext}</p>
                         <p className='blogInfo'>{blogData.publishDate} | {blogData.author}</p>
                     </NavLink>
                     { showEdit ? <span className="editButton" onClick={this.editButtonClick.bind(this)}>编辑</span> : null }

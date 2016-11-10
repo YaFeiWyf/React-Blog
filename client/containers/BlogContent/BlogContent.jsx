@@ -28,16 +28,16 @@ class BlogContent extends Component {
     }
 
     componentWillMount() {
-        let {actions, blogContent} = this.props;
-        actions.initBlogContent(this.props.params.id);
+        let {actions, blogs, blogContent} = this.props;
+        let targetBlog = blogs.filter((blog)=>blog['id']==this.props.params.id);
+        actions.initBlogContent(targetBlog[0]['_id']);
         console.log(JSON.stringify(blogContent));
-
         //this.setState({editorState: EditorState.createWithContent(ContentState.createFromBlockArray([blogContent]))});
     }
 
     componentWillReceiveProps(nextProps) {
         if (nextProps !== this.props) {
-            this.setState({editorState: EditorState.createWithContent(Draft.convertFromRaw(nextProps.blogContent))});
+            this.setState({editorState: EditorState.createWithContent(Draft.convertFromRaw(nextProps.blogContent['content']))});
         }
     }
 
@@ -56,7 +56,8 @@ class BlogContent extends Component {
 
 function mapStateToProps(state) {
     return {
-        blogContent: state.blogs.blogContent.content
+        blogs: state.blogs.blogs,
+        blogContent: state.blogs.blog
     };
 }
 
