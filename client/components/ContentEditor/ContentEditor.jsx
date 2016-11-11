@@ -97,7 +97,7 @@ export default class ContentEditor extends Component {
             }
         }
         if(editData){
-            let id=editData['_id'];
+            id=editData['_id'];
         }
 
 

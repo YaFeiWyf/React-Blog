@@ -27,10 +27,26 @@ router.post('/save',function(req, res, next){
     /**
      * 判断是新增还是修改
      */
-    Blog.find({_id:blogData['id']},function(err, blogList){
+    console.log(blogData['id']);
+    Blog.findById(blogData['id'],function(err, blog){
         //修改
-        if(blogList.length>0){
-            var blog = Object.assign({},blogList[0],blogData);
+        console.log(blog.length+'count !!!');
+        if(blog){
+            console.log(blogData['plaintext']);
+            console.log(blogData['rowData']);
+            var modifyData = {
+                title:blogData['title'],
+                content:JSON.stringify(blogData['rowData']),
+                plaintext:blogData['plaintext'],
+                publishDate:new Date()
+            };
+            console.log(blog);
+            //var blog = Object.assign({}, blogList[0], modifyData);
+            blog['title'] = blogData['title'];
+            blog['content'] = JSON.stringify(blogData['rowData']);
+            blog['plaintext'] = blogData['plaintext'];
+            blog['publishDate'] = new Date();
+            console.log(blog);
             saveBlog(blog, res);
         }else {
             Blog.find(function(err, blogList){
@@ -72,14 +88,16 @@ router.post('/save',function(req, res, next){
 });
 
 router.post('/',function(req, res, next){
-    var blogId = parseInt(req.body.blogId);
-    Blog.find(blogId,function(err, blogList){
+    var blogId = req.body.blogId;
+    console.log(blogId);
+    Blog.findById(blogId,function(err, blog){
+        console.log(blog);
         if(err){
             console.log(err);
         }else {
             res.send({
                 is_success:true,
-                blog:blogList[0]
+                blog:blog
             });
         }
     });
