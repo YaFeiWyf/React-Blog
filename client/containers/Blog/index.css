@@ -1,6 +1,7 @@
 .blogsContainer {
   width: 60%;
-  height: 100%;
+  height: auto;
+  min-height: 100%;
   padding-top: 20px;
   margin-left: 40%;
   background: #fff; }

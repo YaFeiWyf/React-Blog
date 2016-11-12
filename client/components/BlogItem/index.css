@@ -16,10 +16,18 @@
     color: #000; }
   .blogItem p.blogContent {
     line-height: 2;
-    color: #000; }
+    color: #000;
+    max-height: 145px;
+    overflow: hidden;
+    white-space: normal;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 4;
+    -webkit-box-orient: vertical; }
   .blogItem p.blogInfo {
     line-height: 2;
-    color: #b3b3b3; }
+    color: #b3b3b3;
+    margin-top: 24px; }
   .blogItem .editButton {
     position: absolute;
     top: 30px;

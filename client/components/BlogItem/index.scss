@@ -27,12 +27,20 @@ $white: #fff;
 
 	& p.blogContent {
 		line-height: getLineHeight(1.5);
-		color:#000;
+		color: #000;
+		max-height: 145px;
+		overflow: hidden;
+		white-space: normal;
+		text-overflow: ellipsis;
+		display: -webkit-box;
+		-webkit-line-clamp: 4;
+		-webkit-box-orient: vertical;
 	}
 
 	& p.blogInfo {
 		line-height: getLineHeight(1.5);
 		color: darken(#ccc, 10%);
+		margin-top: 24px;
 	}
 
 	& .editButton {

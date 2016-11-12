@@ -42,8 +42,10 @@ class BlogContent extends Component {
     }
 
     render() {
+        let {blogContent} = this.props;
         return (
             <div className="blogContentWrap container">
+                <h1 className="blogTitle">{blogContent['title']}</h1>
                 <Editor
                     editorState={this.state.editorState}
                     blockStyleFn={getBlockStyle}
