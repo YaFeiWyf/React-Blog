@@ -21,8 +21,7 @@ var server = require('http').createServer(function(req, res) {
     
   switch(host){  
     case 'blog.yvanwang.com': 
-	case '115.159.120.97:8080':
-        proxy.web(req, res, { target: 'http://localhost:8080' });  
+        proxy.web(req, res, { target: 'http://localhost:3000' });
     break;  
     case 'vps.cccc.com':  
         proxy.web(req, res, { target: 'http://xyd.bbbbb.com:8080' });  
@@ -43,5 +42,5 @@ var server = require('http').createServer(function(req, res) {
   }  
 });  
   
-console.log("listening on port 80")  
-server.listen(80);  
+console.log("listening on port 8080");
+server.listen(8080);

@@ -17,21 +17,29 @@ router.post('/',function(req, res){
     });*/
     User.find({userName:data['userName']},function(err, userList){
         console.log(data['pass']);
-        console.log(userList[0]['password']);
-        console.log(data['pass']==userList[0]['password']);
+        console.log(userList);
+        /*console.log(userList[0]['password']);
+        console.log(data['pass']==userList[0]['password']);*/
         if(err){
             console.log(err);
         }else {
-            if(data['pass']==userList[0]['password']){
-                res.send({
-                    is_success:true,
-                    authCookie:'029093'
-                });
+            if(userList.length>0){
+                if(data['pass']==userList[0]['password']){
+                    res.send({
+                        is_success:true,
+                        authCookie:'029093'
+                    });
+                }else {
+                    res.send({
+                        is_success:false
+                    });
+                }
             }else {
                 res.send({
                     is_success:false
                 });
             }
+
         }
     });
     /*db.on('connected', function () {
