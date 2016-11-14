@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
+import {browserHistory} from 'react-router';
 import * as Actions from '../../actions/Blogs';
 import Draft, {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
 require('./index.css');
@@ -29,9 +30,14 @@ class BlogContent extends Component {
 
     componentWillMount() {
         let {actions, blogs, blogContent} = this.props;
-        let targetBlog = blogs.filter((blog)=>blog['id']==this.props.params.id);
-        actions.initBlogContent(targetBlog[0]['_id']);
-        console.log(JSON.stringify(blogContent));
+        if(blogs.length>0){
+            let targetBlog = blogs.filter((blog)=>blog['id']==this.props.params.id);
+            actions.initBlogContent(targetBlog[0]['_id']);
+            console.log(JSON.stringify(blogContent));
+        }else {
+            browserHistory.push('/');
+        }
+
         //this.setState({editorState: EditorState.createWithContent(ContentState.createFromBlockArray([blogContent]))});
     }
 
@@ -46,6 +52,7 @@ class BlogContent extends Component {
         return (
             <div className="blogContentWrap container">
                 <h1 className="blogTitle">{blogContent['title']}</h1>
+                <p className="authorInfo">{'作者：'+blogContent['author']}</p>
                 <Editor
                     editorState={this.state.editorState}
                     blockStyleFn={getBlockStyle}

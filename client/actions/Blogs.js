@@ -26,9 +26,9 @@ export function fetchTest(){
 	}
 }
 
-export function initBlogList(){
+export function initBlogList(is_login=false){
 	return (dispatch)=>{
-		fetch('/bloglist',{
+		fetch('/bloglist?is_login='+is_login,{
 			method:'GET',
 			mode:'cors',
 			Origin:'*',
@@ -77,7 +77,7 @@ export function initBlogContent(blogId,callback) {
     }
 }
 
-export function saveBlog(id,rowData,plaintext,callback){
+export function saveBlog(blogData,callback){
     return (dispatch)=>{
         fetch('/blog/save',{
             method:'POST',
@@ -86,11 +86,7 @@ export function saveBlog(id,rowData,plaintext,callback){
             headers:{
                 'Content-Type':'application/json'
             },
-            body:JSON.stringify({
-                id:id,
-                rowData:rowData,
-                plaintext:plaintext
-            })
+            body:JSON.stringify(blogData)
         })
             .then(response=>response.json())
             .then(json=>{

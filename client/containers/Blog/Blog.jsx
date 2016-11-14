@@ -51,8 +51,17 @@ class Blog extends Component {
     }
 
     componentWillMount() {
-        let {actions} = this.props;
-        actions.initBlogList();
+        let {actions, login} = this.props;
+        actions.initBlogList(login.is_login);
+    }
+
+    componentWillReceiveProps(nextProps){
+        if(nextProps!=this.props){
+            let {actions, login} = nextProps;
+            if(this.props.login.is_login!=login.is_login){
+                actions.initBlogList(login.is_login);
+            }
+        }
     }
 
     fetchBlogContent(blogId) {

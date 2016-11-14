@@ -10,12 +10,16 @@ var blogSchema = new Schema({
     author:String,
     plaintext:String,
     content:String,
-    publishDate:Date
+    publishDate:Date,
+    blogStatus:String
 });
 
 /**
  * here can add some methods and statics
  * @type {U|"mongoose".Model<T>}
  */
+blogSchema.statics.findByStatus=function(blogStatus, cb){
+    return this.find({blogStatus:new RegExp(blogStatus, 'i')}, cb);
+};
 
 module.exports = mongoose.model('Blog',blogSchema);

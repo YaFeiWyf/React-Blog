@@ -27,7 +27,11 @@ const styleMap={
 export default class ContentEditor extends Component {
     constructor(props) {
         super(props);
-        this.state = {editorState: EditorState.createEmpty()};
+        this.state = {
+            title:'博客',
+            editorState: EditorState.createEmpty(),
+            blogStatus:'draft'
+        };
         this.onChange = (editorState) => this.setState({editorState});
         this.handleKeyCommand = (command)=>this._handleKeyCommand(command);
         this.changeFontStyle = ()=>this._changeFontStyle();
@@ -35,7 +39,10 @@ export default class ContentEditor extends Component {
         this.toggleInlineStyle = (style)=>this._toggleInlineStyle(style);
         this.focus = ()=>this.refs.editor.focus();
         this.saveBlog = (id, contentState, plaintext)=>this._saveBlog(id, contentState, plaintext);
+        this.setTitle = (event)=>this._setTitle(event);
+        this.setBlogStatus = (event)=> this._setBlogStatus(event);
     }
+
 
     _handleKeyCommand(command) {
         const {editorState} = this.state;
@@ -63,16 +70,39 @@ export default class ContentEditor extends Component {
 
     _saveBlog(id, rowData, plaintext){
         const {saveBlog} = this.props;
-        saveBlog(id, rowData , plaintext, ()=>{
+        let blogData = {
+            id:id,
+            title: this.state.title,
+            blogStatus: this.state.blogStatus,
+            rowData:rowData,
+            plaintext: plaintext
+        };
+        saveBlog(blogData, ()=>{
             console.log('跳转首页');
             browserHistory.push('/');
+        });
+    }
+
+    _setTitle(event){
+        this.setState({
+            title:event.target.value
+        });
+    }
+
+    _setBlogStatus(event){
+        this.setState({
+            blogStatus:event.target.value
         });
     }
 
     componentWillMount(){
         let {editData} = this.props;
         if(editData){
-            this.setState({editorState:EditorState.createWithContent(Draft.convertFromRaw(editData['content']))});
+            this.setState({
+                title:editData['title'],
+                editorState:EditorState.createWithContent(Draft.convertFromRaw(editData['content'])),
+                blogStatus:editData['blogStatus']
+            });
         }
     }
 
@@ -104,6 +134,19 @@ export default class ContentEditor extends Component {
         return (
             <div className="contentEditor RichEditor-root">
                 <EditorToolBar editorState={editorState} {...onToggle}/>
+                <form className="blogInfo">
+                    <div className="title">
+                        <label htmlFor="title">题目：</label>
+                        <input type="text" value={this.state.title} onChange={this.setTitle}/>
+                    </div>
+                    <div className="blogStatus">
+                        <lable htmlFor="blogStatus">状态：</lable>
+                        <select value={this.state.blogStatus} onChange={this.setBlogStatus}>
+                            <option value="draft">草稿</option>
+                            <option value="publish">发布</option>
+                        </select>
+                    </div>
+                </form>
                 <div className={className} onClick={this.focus}>
                     <Editor
                         ref="editor"

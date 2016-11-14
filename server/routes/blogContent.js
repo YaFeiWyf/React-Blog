@@ -23,7 +23,7 @@ function saveBlog(blog, res){
 
 router.post('/save',function(req, res, next){
     var blogData = req.body;
-    blogData['title']='这是第一篇博客';
+    //blogData['title']='这是第一篇博客';
     /**
      * 判断是新增还是修改
      */
@@ -38,7 +38,8 @@ router.post('/save',function(req, res, next){
                 title:blogData['title'],
                 content:JSON.stringify(blogData['rowData']),
                 plaintext:blogData['plaintext'],
-                publishDate:new Date()
+                publishDate:new Date(),
+                blogStatus:blogData['blogStatus']
             };
             console.log(blog);
             //var blog = Object.assign({}, blogList[0], modifyData);
@@ -46,6 +47,7 @@ router.post('/save',function(req, res, next){
             blog['content'] = JSON.stringify(blogData['rowData']);
             blog['plaintext'] = blogData['plaintext'];
             blog['publishDate'] = new Date();
+            blog['blogStatus'] = blogData['blogStatus'];
             console.log(blog);
             saveBlog(blog, res);
         }else {

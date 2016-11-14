@@ -1,7 +1,6 @@
 $white: #fff;
 .blogContentWrap {
 	width: 60%;
-
 	padding: 20px 40px 40px;
 	margin-left: 40%;
 	background: $white;
@@ -11,6 +10,11 @@ $white: #fff;
 	text-align: center;
 	font-size: 24px;
     line-height: 70px;
+}
+.authorInfo {
+	text-align: center;
+	font-size: 16px;
+	margin-bottom: 30px;
 }
 .DraftEditor-root {
     font-size: 18px;
