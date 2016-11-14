@@ -11,7 +11,7 @@ export default class Root extends Component {
       <Provider store={store}>
         <div style={{height:'100%'}}>
           <App />
-          <DevTools />
+          {/*<DevTools />*/}
         </div>
       </Provider>
     );
