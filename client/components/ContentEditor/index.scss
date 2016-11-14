@@ -11,7 +11,8 @@ $width90: 90%;
     box-shadow: 0 0 0 0.75pt #d1d1d1,0 0 3pt 0.75pt #ccc;
     padding: 30px;
     font-size: 18px;
-    & .title {
+    & .title,
+    & .author {
         margin-bottom: 20px;
     }
     & label {

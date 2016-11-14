@@ -29,6 +29,7 @@ export default class ContentEditor extends Component {
         super(props);
         this.state = {
             title:'博客',
+            author:'yvan',
             editorState: EditorState.createEmpty(),
             blogStatus:'draft'
         };
@@ -40,6 +41,7 @@ export default class ContentEditor extends Component {
         this.focus = ()=>this.refs.editor.focus();
         this.saveBlog = (id, contentState, plaintext)=>this._saveBlog(id, contentState, plaintext);
         this.setTitle = (event)=>this._setTitle(event);
+        this.setAuthor = (event)=>this._setAuthor(event);
         this.setBlogStatus = (event)=> this._setBlogStatus(event);
     }
 
@@ -72,6 +74,7 @@ export default class ContentEditor extends Component {
         const {saveBlog} = this.props;
         let blogData = {
             id:id,
+            author:this.state.author,
             title: this.state.title,
             blogStatus: this.state.blogStatus,
             rowData:rowData,
@@ -86,6 +89,12 @@ export default class ContentEditor extends Component {
     _setTitle(event){
         this.setState({
             title:event.target.value
+        });
+    }
+
+    _setAuthor(event){
+        this.setState({
+            author:event.target.value
         });
     }
 
@@ -109,7 +118,7 @@ export default class ContentEditor extends Component {
     render() {
         const {editorState} = this.state;
         const {editData} = this.props;
-        let id=null;
+        let id='11';
         const onToggle = {
             changeFontStyle:this.changeFontStyle,
             toggleBlockType:this.toggleBlockType,
@@ -136,8 +145,12 @@ export default class ContentEditor extends Component {
                 <EditorToolBar editorState={editorState} {...onToggle}/>
                 <form className="blogInfo">
                     <div className="title">
-                        <label htmlFor="title">题目：</label>
+                        <label htmlFor="title">标题：</label>
                         <input type="text" value={this.state.title} onChange={this.setTitle}/>
+                    </div>
+                    <div className="author">
+                        <label htmlFor="title">作者：</label>
+                        <input type="text" value={this.state.author} onChange={this.setAuthor}/>
                     </div>
                     <div className="blogStatus">
                         <lable htmlFor="blogStatus">状态：</lable>

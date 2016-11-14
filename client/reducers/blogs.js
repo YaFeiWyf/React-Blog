@@ -34,6 +34,9 @@ const initState = {
 };
 
 function initBlogListSuccess(state, blogs) {
+	blogs = blogs.sort(function(blogA, blogB){
+		return new Date(blogB['publishDate']).getTime()-new Date(blogA['publishDate']).getTime();
+	});
 	return Object.assign({},state,{blogs:blogs});
 }
 

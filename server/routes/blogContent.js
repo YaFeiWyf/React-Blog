@@ -27,10 +27,9 @@ router.post('/save',function(req, res, next){
     /**
      * 判断是新增还是修改
      */
-    console.log(blogData['id']);
+    console.log(typeof blogData['id']);
     Blog.findById(blogData['id'],function(err, blog){
         //修改
-        console.log(blog.length+'count !!!');
         if(blog){
             console.log(blogData['plaintext']);
             console.log(blogData['rowData']);
@@ -44,6 +43,7 @@ router.post('/save',function(req, res, next){
             console.log(blog);
             //var blog = Object.assign({}, blogList[0], modifyData);
             blog['title'] = blogData['title'];
+            blog['author'] = blogData['author'];
             blog['content'] = JSON.stringify(blogData['rowData']);
             blog['plaintext'] = blogData['plaintext'];
             blog['publishDate'] = new Date();
@@ -53,12 +53,13 @@ router.post('/save',function(req, res, next){
         }else {
             Blog.find(function(err, blogList){
                 var blog = new Blog({
-                    id:blogList.length+1,
-                    author:'wangyafei',
+                    id:blogList[blogList.length-1]['id']+1,
                     title:blogData['title'],
+                    author:blogData['author'],
                     content:JSON.stringify(blogData['rowData']),
                     plaintext:blogData['plaintext'],
-                    publishDate:new Date()
+                    publishDate:new Date(),
+                    blogStatus:blogData['blogStatus']
                 });
                 saveBlog(blog, res);
             });

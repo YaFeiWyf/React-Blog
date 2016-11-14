@@ -10,7 +10,7 @@
   box-shadow: 0 0 0 0.75pt #d1d1d1,0 0 3pt 0.75pt #ccc;
   padding: 30px;
   font-size: 18px; }
-  .contentEditor .blogInfo .title {
+  .contentEditor .blogInfo .title, .contentEditor .blogInfo .author {
     margin-bottom: 20px; }
   .contentEditor .blogInfo label {
     font-size: 18px; }
