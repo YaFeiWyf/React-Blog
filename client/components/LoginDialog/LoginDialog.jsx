@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 const FormItem = Form.Item;
 import {browserHistory} from 'react-router';
+import NavLink from '../NavLink/NavLink';
 require ('./index.css');
 
 let LoginForm = React.createClass({
@@ -49,8 +50,9 @@ let LoginForm = React.createClass({
                                 getFieldDecorator('pass')(<Input type='password' placeholder="请输入密码"/>)
                             }
                         </FormItem>
-                        <FormItem wrapperCol={{span: 16, offset:6}} style={{marginTop:24}}>
-                            <Button type="primary" htmlType='submit'>确定</Button>
+                        <FormItem wrapperCol={{span: 24, offset:0}} style={{marginTop:24, textAlign:'center'}}>
+                            <Button type="primary" htmlType='submit' className="loginButton">确定</Button>
+                            <Button type="primary" htmlType='button' className="loginButton"><NavLink to="/">取消</NavLink></Button>
                         </FormItem>
                     </Form>
                 </div>

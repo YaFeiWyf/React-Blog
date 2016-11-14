@@ -15,6 +15,9 @@
     padding: 30px;
     background: #ffffff;
     border-radius: 10px;
+    & .loginButton {
+        margin: 20px;
+    }
 }
 .ant-form-item-label label {
     font-size: 18px;

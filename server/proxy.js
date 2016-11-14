@@ -20,8 +20,9 @@ var server = require('http').createServer(function(req, res) {
   console.log("client ip:" + ip + ", host:" + host);  
     
   switch(host){  
-    case 'blog.yvanwang.com': 
-        proxy.web(req, res, { target: 'http://localhost:3000' });
+    case 'blog.yvanwang.com':
+    case 'sunnyhuan.yvanwang.com':
+          proxy.web(req, res, { target: 'http://localhost:3000' });
     break;  
     case 'vps.cccc.com':  
         proxy.web(req, res, { target: 'http://xyd.bbbbb.com:8080' });  
