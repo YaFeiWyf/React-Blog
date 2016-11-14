@@ -26,7 +26,7 @@ var server = http.createServer(app);
  */
 
 console.log('listen on port 3000');
-server.listen(port,'192.168.20.225');
+server.listen(port,'localhost');
 server.on('error', onError);
 server.on('listening', onListening);
 
