@@ -51,7 +51,7 @@ class Resume extends Component {
                     <div className="resumeContianer" ref="resumeContianer" onMouseOver={this.onHoverEvent.bind(this)}>
                         <img src={imgSrc} alt="me"/>
                         <h1 className='resumeTitle'>{resumeInfo.resumeTitle}</h1>
-                        <p className='personalInfo'>{resumeInfo.personalInfo}</p>
+                        <p className='personalInfo'>{resumeInfo.personalInfo}<a href="http://www.yvanwang.com">个人网站</a></p>
                         <p className="currentState">{resumeInfo.currentState}</p>
                         <div className="buttons">
                             <NavLink className="indexPage button" to='/'>首页</NavLink>

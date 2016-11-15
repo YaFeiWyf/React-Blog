@@ -14,7 +14,7 @@ proxy.on('error', function (err, req, res) {
 
 // 另外新建一个 HTTP 80 端口的服务器，也就是常规 Node 创建 HTTP 服务器的方法。  
 // 在每次请求中，调用 proxy.web(req, res config) 方法进行请求分发  
-var server = require('http').createServer(function(req, res) {  
+var server = require('http').createServer(function(req, res) {
   // 在这里可以自定义你的路由分发  
   var host = req.headers.host, ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;  
   console.log("client ip:" + ip + ", host:" + host);  
