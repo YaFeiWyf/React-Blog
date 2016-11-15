@@ -66,7 +66,7 @@ class BlogContent extends Component {
                 <div className="disqus">
                     <ReactDisqusThread
                         shortname="http-www-yvanwang-com"
-                        identifier={"yvan-blog"+blogContent['id']}
+                        identifier="something-unique-12345"
                         title={blogContent['title']}
                         url={"http://blog.yvanwang.com/blog/"+blogContent["id"]}
                         category_id="develop"
