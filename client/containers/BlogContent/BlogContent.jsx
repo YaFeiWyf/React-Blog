@@ -4,6 +4,7 @@ import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import * as Actions from '../../actions/Blogs';
 import Draft, {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
+import ReactDisqusThread from 'react-disqus-thread';
 require('./index.css');
 
 function getBlockStyle(contentBlock) {
@@ -47,17 +48,30 @@ class BlogContent extends Component {
         }
     }
 
+    handleNewComment(){
+        console.log('ddd');
+    }
+
     render() {
         let {blogContent} = this.props;
         return (
             <div className="blogContentWrap container">
                 <h1 className="blogTitle">{blogContent['title']}</h1>
-                <p className="authorInfo">{'作者：'+blogContent['author']}</p>
+                <p className="authorInfo">作者：{blogContent['author']} | <span data-hk-page="current"> - </span>人读过</p>
                 <Editor
                     editorState={this.state.editorState}
                     blockStyleFn={getBlockStyle}
                     customStyleMap={styleMap}
                     readOnly={true}/>
+                <div className="disqus">
+                    <ReactDisqusThread
+                        shortname="http-www-yvanwang-com"
+                        identifier={"yvan-blog"+blogContent['id']}
+                        title={blogContent['title']}
+                        url={"http://blog.yvanwang.com/blog/"+blogContent["id"]}
+                        category_id="develop"
+                        onNewComment={this.handleNewComment}/>
+                </div>
             </div>
         );
     }
