@@ -22,7 +22,7 @@ var blogContent = require('./routes/blogContent');
 
 var app = express();
 
-//set static resource
+//set staticResource resource
 app.use(express.static(path.join(__dirname, '../client')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -34,7 +34,7 @@ app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
-//app.use(express.static(path.join(__dirname, 'public')));
+//app.use(express.staticResource(path.join(__dirname, 'public')));
 
 /*//set webpack dev
 app.use(webpackDevMiddleware(compiler, {

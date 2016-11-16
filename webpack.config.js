@@ -22,7 +22,7 @@ var baseConfig = {
         ]
     },
     output: {
-        path: path.join(__dirname, './static'),
+        path: path.join(__dirname, './staticResource'),
         filename: '[name].js',
         chunkFilename: '[id].[chunkhash:5].chunk.js',
         publicPath: '/__build__/'
