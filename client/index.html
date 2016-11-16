@@ -30,5 +30,22 @@
         })();
     </script>
     <!-- 多说公共JS代码 end -->
+    <script type="text/javascript">
+        Icarus.request({
+            api: 'hk.page.get',
+            v: '1.0',
+            pages: [
+                { url: 'http://blog.yvanwang.com/' },
+            ],
+            success: function(result) {
+                for (var i = 0; i < result.length; i++) {
+                    console.log(result.domain, result.url, result.count);
+                }
+            },
+            failure: function(code, err) {
+                console.log(code, err);
+            }
+        });
+    </script>
 </body>
 </html>
