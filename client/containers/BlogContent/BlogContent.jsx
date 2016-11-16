@@ -64,13 +64,16 @@ class BlogContent extends Component {
                     customStyleMap={styleMap}
                     readOnly={true}/>
                 <div className="disqus">
-                    <ReactDisqusThread
+                    {/*<ReactDisqusThread
                         shortname="http-www-yvanwang-com"
                         identifier="something-unique-12345"
                         title={blogContent['title']}
                         url={"http://blog.yvanwang.com/blog/"+blogContent["id"]}
                         category_id="develop"
-                        onNewComment={this.handleNewComment}/>
+                        onNewComment={this.handleNewComment}/>*/}
+                    {/*多说评论框 start*/}
+                    <div className="ds-thread" data-thread-key={blogContent['_id']} data-title={blogContent['title']} data-url={'http://blog.yvanwang.com/'+blogContent['id']}></div>
+                    {/*多说评论框 end*/}
                 </div>
             </div>
         );
