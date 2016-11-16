@@ -40,6 +40,25 @@ export function initBlogList(is_login=false){
 			.then(json=>{
 				if(json.is_success){
 					dispatch(initBlogListSuccess(json.blogs));
+                    var pages = [];
+                    json.blogs.map(blog=>{
+                        pages.push({
+                            url:'http://blog.yvanwang.com/'+blog['id']
+                        });
+                    });
+                    Icarus.request({
+                        api: 'hk.page.get',
+                        v: '1.0',
+                        pages: pages,
+                        success: function(result) {
+                            for (var i = 0; i < result.length; i++) {
+                                console.log(result[i].domain, result[i].url, result[i].count);
+                            }
+                        },
+                        failure: function(code, err) {
+                            console.log(code, err);
+                        }
+                    });
 				}else {
 					dispatch(initBlogListFail())
 				}
