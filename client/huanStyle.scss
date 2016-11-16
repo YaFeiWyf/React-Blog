@@ -1,0 +1,12 @@
+#root {
+    & .resumeWrap,
+    & .resumeContianer {
+        background-color: #AF288E;
+    }
+    & .resumeContianer {
+        & .resumeTitle,
+        & .personalInfo {
+            color: #fff;
+        }
+    }
+}
