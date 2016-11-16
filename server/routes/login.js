@@ -8,9 +8,9 @@ var User = require('../models/user');
 
 router.post('/',function(req, res){
     var data = req.body;
-   /* var user = new User({
-        userName:'wangyafei',
-        password:'123456'
+   /*var user = new User({
+        userName:'lihuan',
+        password:'lihuan0215'
     });
     user.save(function (err) {
         if (err) return handleError(err);
