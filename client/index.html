@@ -15,20 +15,19 @@
 	<script src="/__build__/jsx.js"></script>
 	<script src="/__build__/html.js"></script>
     <!--<script id="dsq-count-scr" src="//http-www-yvanwang-com.disqus.com/count.js" async></script>-->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <div class='webpack' id='footer'></div>
+    <script type="text/javascript" src=" http://int.dpool.sina.com.cn/iplookup/iplookup.php?format=js"></script>
     <script type="text/javascript">
-        var duoshuoQuery = {short_name:"blog-yvanwang-com"};
-        (function() {
-            var ds = document.createElement('script');
-            ds.type = 'text/javascript';
-            ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
-            /*ds.src = (document.location.protocol == 'http://araome.yiluup.com/dsembed.js');*/
-            ds.charset = 'UTF-8';
-            (document.getElementById('footer')).appendChild(ds);
-        })();
+        //<![CDATA[
+       /* alert([
+            remote_ip_info.country,
+            remote_ip_info.province,
+            remote_ip_info.city,
+            remote_ip_info.isp,
+            remote_ip_info.start,
+            remote_ip_info.end
+        ].join(''));*/
+        console.log(remote_ip_info);
+        //]]>
     </script>
-    <!-- 多说公共JS代码 end -->
 </body>
 </html>

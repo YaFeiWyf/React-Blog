@@ -4,7 +4,8 @@ import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import * as Actions from '../../actions/Blogs';
 import Draft, {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
-import ReactDisqusThread from 'react-disqus-thread';
+import Comment from '../../components/Comment/Comment';
+/*import {isEmptyObject} from '../../utils/util';*/
 require('./index.css');
 
 function getBlockStyle(contentBlock) {
@@ -22,6 +23,14 @@ const styleMap = {
         padding: 2
     }
 };
+
+export function isEmptyObject(e) {
+    var t;
+    for (t in e){
+        return !1;
+    }
+    return !0
+}
 
 class BlogContent extends Component {
     constructor(props) {
@@ -55,29 +64,25 @@ class BlogContent extends Component {
 
     render() {
         let {blogContent} = this.props;
-        return (
-            <div className="blogContentWrap container">
-                <h1 className="blogTitle">{blogContent['title']}</h1>
-                <p className="authorInfo">作者：{blogContent['author']}<span className="spliter"></span>浏览量：{blogContent['count']}</p>
-                <Editor
-                    editorState={this.state.editorState}
-                    blockStyleFn={getBlockStyle}
-                    customStyleMap={styleMap}
-                    readOnly={true}/>
-                <div className="disqus">
-                    {/*<ReactDisqusThread
-                        shortname="http-www-yvanwang-com"
-                        identifier="something-unique-12345"
-                        title={blogContent['title']}
-                        url={"http://blog.yvanwang.com/blog/"+blogContent["id"]}
-                        category_id="develop"
-                        onNewComment={this.handleNewComment}/>*/}
-                    {/*多说评论框 start*/}
-                    <div className="ds-thread" data-thread-key={blogContent['_id']} data-title={blogContent['title']} data-url={'http://blog.yvanwang.com/'+blogContent['id']}></div>
-                    {/*多说评论框 end*/}
+        if(!isEmptyObject(blogContent)){
+            return (
+                <div className="blogContentWrap container">
+                    <h1 className="blogTitle">{blogContent['title']}</h1>
+                    <p className="authorInfo">作者：{blogContent['author']}<span className="spliter"></span>浏览量：{blogContent['count']}</p>
+                    <Editor
+                        editorState={this.state.editorState}
+                        blockStyleFn={getBlockStyle}
+                        customStyleMap={styleMap}
+                        readOnly={true}/>
+                    <div className="comment">
+                        <Comment comments={blogContent['comments']}/>
+                    </div>
                 </div>
-            </div>
-        );
+            );
+        }else {
+            return null;
+        }
+
     }
 }
 

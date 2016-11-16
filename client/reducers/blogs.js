@@ -62,8 +62,26 @@ function deleteBlog(state, blog){
 	return Object.assign({}, state, {blogs: blogs});
 }
 
+let comments = [
+    {
+        name:'wangyafei',
+        commentTime:'2015年5月6日',
+        commentContent:'这个评论系统是自己设计的嘛！！'
+    },
+    {
+        name:'lihuan',
+        commentTime:'2015年5月6日',
+        commentContent:'这个好棒啊！！'
+    },
+    {
+        name:'huanhuan',
+        commentTime:'2015年5月6日',
+        commentContent:'这个评论的嘛！！'
+    }
+];
+
 function saveBlogCount(state, blog) {
-    var blogData = Object.assign({},blog,{content:JSON.parse(blog['content'])});
+    var blogData = Object.assign({},blog,{content:JSON.parse(blog['content']),comments:comments});
 	return Object.assign({},state,{blog:blogData});
 }
 
