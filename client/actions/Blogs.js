@@ -1,4 +1,4 @@
-import { INIT_BLOG_LIST_SUCCESS,INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, SAVE_BLOG_SUCCESS, DELETE_BLOG } from '../constants/ActionTypes';
+import { INIT_BLOG_LIST_SUCCESS,INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, SAVE_BLOG_SUCCESS, DELETE_BLOG, SAVE_BLOG_COUNTER } from '../constants/ActionTypes';
 import fetch from 'isomorphic-fetch';
 
 export function fetchTest(){
@@ -40,25 +40,6 @@ export function initBlogList(is_login=false){
 			.then(json=>{
 				if(json.is_success){
 					dispatch(initBlogListSuccess(json.blogs));
-                    var pages = [];
-                    json.blogs.map(blog=>{
-                        pages.push({
-                            url:'http://blog.yvanwang.com/'+blog['id']
-                        });
-                    });
-                    Icarus.request({
-                        api: 'hk.page.get',
-                        v: '1.0',
-                        pages: pages,
-                        success: function(result) {
-                            for (var i = 0; i < result.length; i++) {
-                                console.log(result[i].domain, result[i].url, result[i].count);
-                            }
-                        },
-                        failure: function(code, err) {
-                            console.log(code, err);
-                        }
-                    });
 				}else {
 					dispatch(initBlogListFail())
 				}
@@ -120,6 +101,32 @@ export function saveBlog(blogData,callback){
     }
 }
 
+export function saveBlogCount(blogId, count) {
+    return (dispatch)=>{
+        fetch('/blog/saveCount',{
+            method:'POST',
+            mode:'cors',
+            Origin:'*',
+            headers:{
+                'Content-Type':'application/json'
+            },
+            body:JSON.stringify({
+                blogId:blogId,
+                count:count
+            })
+        })
+            .then(response=>response.json())
+            .then(json=>{
+                if(json.save_success){
+                    dispatch(saveBlogCounterSuccess(json.blog));
+                }else {
+                    console.log('save fail');
+                }
+            })
+            .catch(e=>console.log(e));
+    }
+}
+
 export function initBlogListSuccess(blogs) {
     return {
         type:INIT_BLOG_LIST_SUCCESS,
@@ -152,4 +159,11 @@ export function deleteBlog(blog){
 		type:DELETE_BLOG,
 		blog
 	}
+}
+
+export function saveBlogCounterSuccess(blog) {
+    return {
+        type:SAVE_BLOG_COUNTER,
+        blog
+    };
 }

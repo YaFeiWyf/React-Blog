@@ -5,6 +5,10 @@ $white: #fff;
 	margin-left: 40%;
 	background: $white;
 	color: #333;
+	& .spliter {
+		display: inline-block;
+		width: 20px;
+	}
 }
 .blogTitle {
 	text-align: center;

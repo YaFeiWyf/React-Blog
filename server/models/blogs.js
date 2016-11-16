@@ -11,7 +11,8 @@ var blogSchema = new Schema({
     plaintext:String,
     content:String,
     publishDate:Date,
-    blogStatus:String
+    blogStatus:String,
+    count:Number
 });
 
 /**

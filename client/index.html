@@ -5,8 +5,6 @@
 	<title>Yvan Wang's Blog</title>
 	<link rel="stylesheet" href="/index.css"/>
 	<link rel="stylesheet" href="/common.css"/>
-    <script src="https://cdn1.lncld.net/static/js/av-mini-0.6.10.js"></script>
-    <script src="http://jerry-cdn.b0.upaiyun.com/hit-kounter/hit-kounter-lc-0.2.0.js"></script>
     <script src="/toggle.js"></script>
 </head>
 <body>
@@ -16,36 +14,21 @@
 	<script src="/__build__/vendor.bundle.js"></script>
 	<script src="/__build__/jsx.js"></script>
 	<script src="/__build__/html.js"></script>
-    <script id="dsq-count-scr" src="//http-www-yvanwang-com.disqus.com/count.js" async></script>
+    <!--<script id="dsq-count-scr" src="//http-www-yvanwang-com.disqus.com/count.js" async></script>-->
     <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+    <div class='webpack' id='footer'></div>
     <script type="text/javascript">
         var duoshuoQuery = {short_name:"blog-yvanwang-com"};
         (function() {
             var ds = document.createElement('script');
-            ds.type = 'text/javascript';ds.async = true;
-            ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+            ds.type = 'text/javascript';
+            ds.async = true;
+            //ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.unstable.js';
+            ds.src = (document.location.protocol == 'http://araome.yiluup.com/dsembed.js');
             ds.charset = 'UTF-8';
-            (document.getElementsByTagName('head')[0]
-            || document.getElementsByTagName('body')[0]).appendChild(ds);
+            (document.getElementById('footer')).appendChild(ds);
         })();
     </script>
     <!-- 多说公共JS代码 end -->
-    <!--<script type="text/javascript">
-        Icarus.request({
-            api: 'hk.page.get',
-            v: '1.0',
-            pages: [
-                { url: 'http://blog.yvanwang.com/' },
-            ],
-            success: function(result) {
-                for (var i = 0; i < result.length; i++) {
-                    console.log(result[i].domain, result[i].url, result[i].count);
-                }
-            },
-            failure: function(code, err) {
-                console.log(code, err);
-            }
-        });
-    </script>-->
 </body>
 </html>

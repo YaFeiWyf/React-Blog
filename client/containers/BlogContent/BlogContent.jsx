@@ -33,7 +33,8 @@ class BlogContent extends Component {
         let {actions, blogs, blogContent} = this.props;
         if(blogs.length>0){
             let targetBlog = blogs.filter((blog)=>blog['id']==this.props.params.id);
-            actions.initBlogContent(targetBlog[0]['_id']);
+            /*actions.initBlogContent(targetBlog[0]['_id']);*/
+            actions.saveBlogCount(targetBlog[0]['_id'], targetBlog[0]['count']+1);
             console.log(JSON.stringify(blogContent));
         }else {
             browserHistory.push('/');
@@ -57,7 +58,7 @@ class BlogContent extends Component {
         return (
             <div className="blogContentWrap container">
                 <h1 className="blogTitle">{blogContent['title']}</h1>
-                <p className="authorInfo">作者：{blogContent['author']} | <span data-hk-page="current"> - </span>人读过</p>
+                <p className="authorInfo">作者：{blogContent['author']}<span className="spliter"></span>浏览量：{blogContent['count']}</p>
                 <Editor
                     editorState={this.state.editorState}
                     blockStyleFn={getBlockStyle}
