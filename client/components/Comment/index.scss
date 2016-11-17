@@ -1,0 +1,10 @@
+.commentWrap {
+    margin-top: 200px;
+    & .commentTitle {
+        text-align: center;
+        font-size: 20px;
+        border-top: 1px dashed #000;
+        line-height: 60px;
+        color: #5A5A5A;
+    }
+}

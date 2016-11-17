@@ -3,9 +3,10 @@ import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
 import {browserHistory} from 'react-router';
 import * as Actions from '../../actions/Blogs';
+import * as commentActions from '../../actions/Comments';
 import Draft, {Editor, EditorState, ContentState, RichUtils} from 'draft-js';
 import Comment from '../../components/Comment/Comment';
-/*import {isEmptyObject} from '../../utils/util';*/
+import {isEmptyObject} from '../../utils/util';
 require('./index.css');
 
 function getBlockStyle(contentBlock) {
@@ -24,13 +25,13 @@ const styleMap = {
     }
 };
 
-export function isEmptyObject(e) {
+/*export function isEmptyObject(e) {
     var t;
     for (t in e){
         return !1;
     }
     return !0
-}
+}*/
 
 class BlogContent extends Component {
     constructor(props) {
@@ -63,7 +64,7 @@ class BlogContent extends Component {
     }
 
     render() {
-        let {blogContent} = this.props;
+        let {blogContent, comments, commentActions} = this.props;
         if(!isEmptyObject(blogContent)){
             return (
                 <div className="blogContentWrap container">
@@ -75,7 +76,7 @@ class BlogContent extends Component {
                         customStyleMap={styleMap}
                         readOnly={true}/>
                     <div className="comment">
-                        <Comment comments={blogContent['comments']}/>
+                        <Comment comments={comments} blogId={blogContent['_id']} commentActions={commentActions}/>
                     </div>
                 </div>
             );
@@ -89,13 +90,15 @@ class BlogContent extends Component {
 function mapStateToProps(state) {
     return {
         blogs: state.blogs.blogs,
-        blogContent: state.blogs.blog
+        blogContent: state.blogs.blog,
+        comments: state.comments.comments
     };
 }
 
 function mapDispatchToProps(dispatch) {
     return {
-        actions: bindActionCreators(Actions, dispatch)
+        actions: bindActionCreators(Actions, dispatch),
+        commentActions:bindActionCreators(commentActions, dispatch)
     };
 }
 

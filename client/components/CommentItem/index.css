@@ -1,0 +1,35 @@
+.commentItem {
+  padding: 15px 0;
+  font-size: 16px;
+  border-bottom: 1px dashed #ccc; }
+  .commentItem .commentatorInfo {
+    font-size: 18px; }
+    .commentItem .commentatorInfo .commentTime {
+      font-size: 16px; }
+  .commentItem .avator {
+    float: left;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    margin-right: 20px; }
+  .commentItem .commentContent {
+    margin: 20px 0; }
+  .commentItem .commentAction {
+    margin-top: 20px;
+    text-align: right; }
+    .commentItem .commentAction .agree, .commentItem .commentAction .disagree, .commentItem .commentAction .reply {
+      display: inline-block;
+      width: 100px;
+      text-align: center;
+      font-size: 14px;
+      height: 30px;
+      line-height: 30px;
+      cursor: pointer;
+      color: #ccc;
+      transition: all ease-in-out .3s; }
+      .commentItem .commentAction .agree .icon, .commentItem .commentAction .disagree .icon, .commentItem .commentAction .reply .icon {
+        margin-right: 12px; }
+      .commentItem .commentAction .agree:hover, .commentItem .commentAction .disagree:hover, .commentItem .commentAction .reply:hover {
+        color: #000; }
+
+/*# sourceMappingURL=index.css.map */

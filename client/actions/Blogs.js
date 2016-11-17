@@ -1,4 +1,5 @@
 import { INIT_BLOG_LIST_SUCCESS,INIT_BLOG_LIST_FAIL, SHOW_BLOG_CONTENT, SAVE_BLOG_SUCCESS, DELETE_BLOG, SAVE_BLOG_COUNTER } from '../constants/ActionTypes';
+import {initCommentListSuccess} from './Comments';
 import fetch from 'isomorphic-fetch';
 
 export function fetchTest(){
@@ -119,6 +120,7 @@ export function saveBlogCount(blogId, count) {
             .then(json=>{
                 if(json.save_success){
                     dispatch(saveBlogCounterSuccess(json.blog));
+                    dispatch(initCommentListSuccess(json.comments));
                 }else {
                     console.log('save fail');
                 }

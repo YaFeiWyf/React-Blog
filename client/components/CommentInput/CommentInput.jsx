@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Icon} from 'antd';
 require('./index.css');
 
 export default class CommentInput extends Component {
@@ -23,10 +24,39 @@ export default class CommentInput extends Component {
         this.setState({
             commentContent:event.target.value
         });
+        this.refs.contentError.innerHTML=null;
     }
 
     _saveComment(){
-        //todo
+        let {saveComment, parentId, blogId, closeInput} = this.props;
+        let commentParentId = parentId || '';
+        let commentContent = this.state.commentContent;
+        let name = this.state.name;
+        let that = this;
+        //表单验证
+        if(commentContent==''){
+            return this.refs.contentError.innerHTML='留言内容不能为空 :)';
+        }
+        if(commentContent.length>200){
+            return this.refs.contentError.innerHTML='留言最多说200字 :)';
+        }
+        if(name==''){
+            name='匿名者';
+        }
+        saveComment({
+            parentId:commentParentId,
+            blogId:blogId,
+            name: name,
+            commentContent:commentContent
+        }, function(){
+            if(closeInput){
+                closeInput(true);
+            }
+            that.setState({
+                name:'',
+                commentContent:''
+            });
+        });
 
     }
 
@@ -34,16 +64,17 @@ export default class CommentInput extends Component {
         return (
             <div className="commentInput">
                 <form className="commentForm">
-                    <div className="name">
+                    <div className="name formItem">
                         <label htmlFor="name">称呼：</label>
                         <input type="text" name="name" value={this.state.name} placeholder="称呼" onChange={this.setName}/>
                     </div>
-                    <div className="commentContent">
-                        <lable htmlFor="content">状态：</lable>
-                        <textarea name="content" cols="30" rows="10" value={this.state.commentContent} placeholder="回复：" onChange={this.setContent}>
+                    <div className="commentContent formItem">
+                        <label htmlFor="content">回复：</label>
+                        <textarea name="content" cols="30" rows="5" value={this.state.commentContent} placeholder="回复一下：" onChange={this.setContent}>
                         </textarea>
+                        <span className="error" ref="contentError"></span>
                     </div>
-                    <span className="saveComment" onClick={this.saveComment}>确定</span>
+                    <span className="saveComment" onClick={this.saveComment}><Icon type="check"/></span>
                 </form>
             </div>
         );

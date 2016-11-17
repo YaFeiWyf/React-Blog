@@ -4,6 +4,7 @@ var express = require('express');
 var router = express.Router();
 var fs = require('fs');
 var Blog = require('../models/blogs');
+var Comment = require('../models/comments');
 
 /*router.get('/(:id)',function(req, res, next){
     res.sendfile(path.resolve(__dirname,'../../client','index.html'));
@@ -91,7 +92,23 @@ router.post('/saveCount', function(req, res, next){
             console.log(err);
         }else {
             blog['count'] = blogCount['count'];
-            saveBlog(blog, res);
+            blog.save(function(err){
+                if(err){
+                    console.log(err);
+                }else {
+                    Comment.find({blogId:blog['_id']}, function (err, comments) {
+                        if(err){
+                            res.send(err);
+                        }else {
+                            res.send({
+                                save_success:true,
+                                blog:blog,
+                                comments:comments
+                            });
+                        }
+                    });
+                }
+            });
         }
     });
 });

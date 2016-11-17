@@ -1,10 +1,47 @@
 .commentItem {
-    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    font-size: 16px;
+    border-bottom: 1px dashed #ccc;
+    & .commentatorInfo {
+        font-size: 18px;
+        & .commentTime {
+            font-size: 16px;
+        }
+    }
+
     & .avator {
         float: left;
-        width: 40px;
-        height: 40px;
+        width: 50px;
+        height: 50px;
         border-radius: 100%;
-        margin-right: 10px;
+        margin-right: 20px;
+    }
+
+    & .commentContent {
+        margin: 20px 0;
+    }
+
+    & .commentAction {
+        margin-top: 20px;
+        text-align: right;
+        & .agree,
+        & .disagree,
+        & .reply {
+            display: inline-block;
+            width: 100px;
+            text-align: center;
+            font-size: 14px;
+            height: 30px;
+            line-height: 30px;
+            cursor: pointer;
+            color: #ccc;
+            transition: all ease-in-out .3s;
+            & .icon {
+                margin-right: 12px;
+            }
+            &:hover {
+                color: #000;
+            }
+        }
     }
 }
