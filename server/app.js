@@ -19,6 +19,7 @@ var test = require('./routes/test');
 var login = require('./routes/login');
 var blogList = require('./routes/blogList');
 var blogContent = require('./routes/blogContent');
+var comment = require('./routes/comment');
 
 var app = express();
 
@@ -76,6 +77,7 @@ app.use('/users', users);
 app.use('/test', test);
 app.use('/login',login);
 app.use('/blog',blogContent);
+app.use('/comment',comment);
 app.get('*', function (request, response){
     response.sendFile(path.resolve(__dirname,'../client','index.html'));
 });
