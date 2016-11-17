@@ -32,4 +32,8 @@
       .commentItem .commentAction .agree:hover, .commentItem .commentAction .disagree:hover, .commentItem .commentAction .reply:hover {
         color: #000; }
 
+.commentItem.childComment {
+  border-left: 3px solid rgba(0, 0, 0, 0.2);
+  padding-left: 20px; }
+
 /*# sourceMappingURL=index.css.map */

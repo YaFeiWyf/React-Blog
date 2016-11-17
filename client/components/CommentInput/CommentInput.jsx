@@ -49,13 +49,16 @@ export default class CommentInput extends Component {
             name: name,
             commentContent:commentContent
         }, function(){
+            //回复子评论要关闭输入框
             if(closeInput){
                 closeInput(true);
+            }else {
+                //回复文章要重置输入框
+                that.setState({
+                    name:'',
+                    commentContent:''
+                });
             }
-            that.setState({
-                name:'',
-                commentContent:''
-            });
         });
 
     }

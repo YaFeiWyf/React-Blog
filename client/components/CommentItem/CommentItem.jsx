@@ -76,8 +76,9 @@ export default class CommentItem extends Component {
         let {comment, blogId, commentActions} = this.props;
         var agreeClick = !this.state.agreeClick ? this.agreeClick : null;
         var disAgreeClick = !this.state.disAgreeClick ? this.disAgreeClick : null;
+        var commentItem = comment['parentId']==''?'commentItem':'commentItem childComment';
         return (
-            <div className="commentItem">
+            <div className={commentItem}>
                 <div className="commentatorInfo">
                     <img src={defaultImg} alt="默认头像" className="avator"/>
                     <p className="commentatorName">{comment['name']}</p>

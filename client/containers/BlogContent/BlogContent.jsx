@@ -25,14 +25,6 @@ const styleMap = {
     }
 };
 
-/*export function isEmptyObject(e) {
-    var t;
-    for (t in e){
-        return !1;
-    }
-    return !0
-}*/
-
 class BlogContent extends Component {
     constructor(props) {
         super(props);

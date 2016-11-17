@@ -1,9 +1,7 @@
 import React, {Component} from 'react';
 import CommentInput from '../CommentInput/CommentInput';
 import CommentItem from '../CommentItem/CommentItem';
-import * as Actions from '../../actions/Comments';
-import {connect} from 'react-redux';
-import {bindActionCreators} from 'redux';
+import {formatComments} from '../../utils/util';
 require('./index.css');
 
 export default class Comment extends Component {
@@ -19,8 +17,14 @@ export default class Comment extends Component {
          * 对评论按日期进行倒叙
          * 对评论进行子评论组织
          */
-        comments.map((comment, index)=>{
-            commentItems.push(<CommentItem key={index} comment={comment} blogId={blogId} commentActions={commentActions}/>)
+        let newComments = formatComments(comments);
+        newComments.map((comment)=>{
+            commentItems.push(<CommentItem key={comment['_id']} comment={comment} blogId={blogId} commentActions={commentActions}/>)
+            if(comment['children']) {
+                comment['children'].map((c)=>{
+                    commentItems.push(<CommentItem key={c['_id']} comment={comment} blogId={blogId} commentActions={commentActions}/>)
+                })
+            }
         });
         return (
             <div className="commentWrap">

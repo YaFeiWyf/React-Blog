@@ -26,3 +26,24 @@ export function isEmptyObject(e) {
     }
     return !0
 }
+
+export function formatComments(comments) {
+    let newComments = [];
+    for(let comment of comments){
+        if(comment['parentId']==''){
+            newComments.push(comment);
+        }else {
+            let parentComment = comments.filter(c=>c['_id']==comment['parentId'])[0];
+            parentComment['children'] = parentComment['children'] || [];
+            parentComment['children'].push(comment);
+            sortComments(parentComment['children']);
+        }
+    }
+    return sortComments(newComments);
+}
+
+function sortComments(comments) {
+    return comments.sort(function (commentA, commentB) {
+        return new Date(commentA['commentTime']).getTime()-new Date(commentB['commentTime']).getTime();
+    });
+}
